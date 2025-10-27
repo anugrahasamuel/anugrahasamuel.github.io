@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "my-website",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "assign01.html",
+    "href": "assign01.html",
+    "title": "assign01.qmd",
+    "section": "",
+    "text": "Website Design Note\nThis website was created using RStudio and Quarto. The “cosmo” theme provides a clean and professional appearance suitable for academic content. The navigation bar includes links to the homepage, about page, and assignments for easy navigation. A resume page is also added for quick access to professional information. The site is structured to reflect both academic and professional aspects of the author’s work."
+  }
+]
