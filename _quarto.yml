@@ -1,13 +1,20 @@
 project:
   type: website
+  resources:
+    - files/*   # so your PDF gets copied when you render
 
 website:
-  title: "anugrahasamuel.github.io"
+  title: "Anugraha Samuel"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+      - text: Assignments
+        menu:
+          - href: epps6302.qmd
+            text: EPPS 6302
 
 format:
   html:
@@ -18,4 +25,3 @@ format:
     toc: true
 
 editor: visual
-

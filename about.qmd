@@ -2,8 +2,19 @@
 title: "About"
 ---
 
-About this site
+# About
 
-```{r}
-1 + 1
-```
+I am an MS Social Data Analytics and Research student at The University of Texas at Dallas.  
+I’m interested in how data, storytelling, and quantitative methods can help us better understand social issues.
+
+This site is a place to share:
+
+- Course projects and assignments  
+- Examples of my R and Quarto work  
+- Reflections on research and data collection  
+
+## My Resume
+
+You can view or download my current CV here:
+
+[📄 Download my resume](files/Anugraha_Samuel_CV.pdf)
