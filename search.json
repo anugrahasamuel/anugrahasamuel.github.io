@@ -4,20 +4,27 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "I am an MS Social Data Analytics and Research student at The University of Texas at Dallas.\nI’m interested in how data, storytelling, and quantitative methods can help us better understand social issues.\nThis site is a place to share:\n\nCourse projects and assignments\n\nExamples of my R and Quarto work\n\nReflections on research and data collection\n\n\n\nYou can view or download my current CV here:\n📄 Download my resume"
+  },
+  {
+    "objectID": "about.html#my-resume",
+    "href": "about.html#my-resume",
+    "title": "About",
+    "section": "",
+    "text": "You can view or download my current CV here:\n📄 Download my resume"
+  },
+  {
+    "objectID": "epps6302_assignment2.html",
+    "href": "epps6302_assignment2.html",
+    "title": "Assignment 2",
+    "section": "",
+    "text": "write"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "my-website",
+    "title": "anugrahasamuel.github.io",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "assign01.html",
-    "href": "assign01.html",
-    "title": "assign01.qmd",
-    "section": "",
-    "text": "Website Design Note\nThis website was created using RStudio and Quarto. The “cosmo” theme provides a clean and professional appearance suitable for academic content. The navigation bar includes links to the homepage, about page, and assignments for easy navigation. A resume page is also added for quick access to professional information. The site is structured to reflect both academic and professional aspects of the author’s work."
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1 + 1\n\n[1] 3"
   }
 ]
