@@ -1,0 +1,144 @@
+---
+title: "Assignment 6 – Text Analytics using quanteda"
+format: html
+editor: visual
+---
+
+## 1. Reading about the quanteda package
+
+The **quanteda** package is a comprehensive framework for quantitative text analysis in R. It provides tools for importing text, cleaning it, tokenizing it, and converting it into document–feature matrices (DFMs). From these DFMs, users can apply advanced text-analysis methods such as word clouds, keyness comparison, topic modeling, co-occurrence networks, and scaling models such as LSA, Wordfish, and Wordscores. Compared to base R text processing, quanteda makes it faster and more efficient to process large text collections and run reproducible analyses.
+
+---
+
+## 2. Biden–Xi Summit Tweets
+
+This section uses the code in **quanteda_textanalytics01.R**.  
+The script loads tweets about the November 2021 Biden–Xi virtual summit, builds DFMs, performs latent semantic analysis (LSA), and plots hashtag and user networks.
+
+### 2.1 Run the script
+
+```{r}
+source("quanteda_textanalytics01.R")
+```
+
+### 2.2 Interpretation
+
+#### *LSA (Latent Semantic Analysis)*
+The LSA output shows that tweets cluster into several thematic groups. Based on the most frequent terms in each dimension, the discussions appear to revolve around:
+
+- **Diplomacy & cooperation** (summit, meeting, leaders, virtual talks)  
+- **Geopolitical tension** (China, security, human rights, Taiwan)  
+- **U.S. domestic reactions** (journalists, think-tank commentary)  
+
+These clusters reflect how Twitter conversations typically separate into news reporting, political opinion, and geopolitical analysis.
+
+#### *Hashtag Network Plot*
+```{r}
+textplot_network(topgat_fcm, min_freq = 50, edge_alpha = 0.8, edge_size = 1)
+```
+
+The hashtag network reveals groups of frequently co-occurring hashtags. For example:
+
+- News-related tags (#Breaking, #US, #China)  
+- Political commentary tags (#Biden, #XiJinping)  
+- Issue-specific tags (e.g., related to trade, security, diplomacy)  
+
+Hashtags that appear close together represent shared topics in the discourse.
+
+#### *User Mention Network Plot*
+```{r}
+textplot_network(user_fcm, min_freq = 20, edge_color = "firebrick",
+                 edge_alpha = 0.8, edge_size = 1)
+```
+
+This network shows which accounts dominate the conversation. Central users typically include:
+
+- Journalists reporting on the summit  
+- News outlets  
+- Political commentators  
+- Analysts covering U.S.–China relations  
+
+The high degree of clustering indicates that a small number of influential accounts shape much of the discussion.
+
+---
+
+## 3. U.S. Presidential Inaugural Speeches
+
+This section uses the code in **quanteda_textanalytics02.R**.  
+The script analyzes the U.S. inaugural address corpus using wordclouds, keyword-in-context (KWIC), frequency charts, and text scaling.
+
+### 3.1 Run the script
+
+```{r}
+source("quanteda_textanalytics02.R")
+```
+
+### 3.2 Interpretation
+
+#### *Early Inaugural Speech Wordclouds*
+The earliest speeches (1789–1826) emphasize terms such as *government*, *duty*, *public*, *union*, and *people*.  
+This reflects the period’s preoccupation with defining governmental roles and stabilizing the new republic.
+
+#### *Comparing Bush, Obama, and Trump Wordclouds*
+The comparison wordcloud shows clear stylistic differences:
+
+- **Bush**: terms relating to security, freedom, resolve  
+- **Obama**: focus on hope, unity, responsibility  
+- **Trump**: “America-first” framing, strong emphasis on national identity  
+
+These terms highlight ideological and rhetorical distinctions between administrations.
+
+#### *KWIC + X-Ray Plots*
+
+KWIC searches for words such as **“american”**, **“people”**, and **“communist”** reveal how each term’s use varies by president.  
+The x-ray plot shows that:
+
+- “American” appears more frequently in later decades  
+- “People” remains a consistently common term  
+- “Communist” spikes during Cold War speeches  
+
+#### *Frequency Plot for “american”*
+This plot shows the rising use of the term “american” over time.  
+It suggests a growing rhetorical emphasis on national identity throughout the 20th and 21st centuries.
+
+#### *Keyness Analysis: Trump vs. Obama*
+Keyness identifies words most strongly associated with one president versus the other.
+
+- Words with **positive keyness** → more common in Trump’s speech  
+- Words with **negative keyness** → more common in Obama’s speech  
+
+This captures stylistic and thematic contrasts between the two presidents.
+
+---
+
+## 4. What is Wordfish?
+
+**Wordfish** is an **unsupervised text scaling model** that estimates:
+
+- A latent dimension (e.g., ideology)
+- Word discrimination values
+- Document positions on the latent scale
+
+It uses a Poisson model of word counts:
+
+- Words that strongly indicate one side of the scale receive high discrimination values  
+- Documents containing those words more frequently get shifted toward that side of the latent dimension  
+
+The model is often used to measure:
+
+- Party ideology  
+- Policy stance  
+- Rhetorical positioning  
+
+In this assignment’s script, Wordfish is demonstrated using Irish budget speeches, showing how parties and years align on an inferred economic policy dimension.
+
+---
+
+## Summary
+
+This assignment demonstrated how quanteda enables:
+
+- Large-scale text preprocessing  
+- Exploratory visualizations (wordclouds, networks, frequency plots)  
+- Advanced modeling (LSA, keyness, Wordfish)  
+- Interpretation of political and social communication via text analytics  

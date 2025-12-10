@@ -1,0 +1,6 @@
+---
+title: "Assignment 2"
+format: html
+---
+
+write

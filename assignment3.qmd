@@ -1,0 +1,147 @@
+---
+title: "Assignment 3: Mapping Census Data"
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+editor: visual
+---
+
+## Objective
+
+In this assignment, I use ACS 2023 5-year data to map median household income
+and summarize poverty for Texas counties.
+
+```{r}
+#| label: setup-packages
+#| message: FALSE
+#| warning: FALSE
+
+# Load packages
+library(tidycensus)
+library(tigris)
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(knitr)
+
+options(tigris_use_cache = TRUE)
+
+# Set your Census API key for this R session
+# (replace "YOUR_KEY_HERE" with your actual key)
+census_api_key("52fd7a1a4a82921f1fd9dd3db0c338d2351c5ee1", install = FALSE)
+```
+
+## Choose geography and variables
+
+```{r}
+#| label: choose-vars
+
+# Texas state abbreviation
+state_tx <- "TX"
+
+# Named vector of variables
+acs_vars <- c(
+  med_income = "B19013_001",  # Median household income
+  poverty    = "B17001_002"   # People below poverty level
+)
+```
+
+## Download ACS 2023 5-year data (with geometry)
+
+```{r}
+#| label: download-acs
+#| message: FALSE
+#| warning: FALSE
+
+tx_acs <- get_acs(
+  geography = "county",
+  state     = state_tx,
+  variables = acs_vars,
+  year      = 2023,
+  survey    = "acs5",
+  geometry  = TRUE,
+  output    = "wide"   # wide gives med_incomeE, med_incomeM, etc.
+)
+```
+
+```{r}
+#| label: inspect-data
+
+dplyr::glimpse(tx_acs)
+```
+
+## Map: median household income by county
+
+```{r}
+#| label: map-income
+#| fig.cap: "ACS 2023 5-year: Median household income by county in Texas"
+
+ggplot(tx_acs) +
+  geom_sf(aes(fill = med_incomeE), color = NA) +
+  scale_fill_viridis_c(
+    option = "plasma",
+    labels = scales::label_dollar(prefix = "$")
+  ) +
+  labs(
+    title = "ACS 2023 5-year: Median Household Income — Texas Counties",
+    fill  = "Median HH Income"
+  ) +
+  theme_minimal()
+```
+
+The map shows that counties around large metros such as Dallas–Fort Worth,
+Austin, and Houston tend to have higher median incomes, while many rural
+counties in West and South Texas have lower incomes.
+
+## Table: top and bottom 10 counties by people below poverty
+
+```{r}
+#| label: poverty-table
+#| results: "asis"
+
+tx_poverty_tbl <- tx_acs |>
+  sf::st_drop_geometry() |>
+  dplyr::select(
+    county      = NAME,
+    povertyE,
+    povertyM,
+    med_incomeE,
+    med_incomeM
+  )
+
+# Top 10 counties by number of people below poverty
+top10_poverty <- tx_poverty_tbl |>
+  dplyr::arrange(dplyr::desc(povertyE)) |>
+  dplyr::slice_head(n = 10) |>
+  dplyr::mutate(rank_group = "Highest poverty (count)")
+
+# Bottom 10 counties by number of people below poverty
+bottom10_poverty <- tx_poverty_tbl |>
+  dplyr::arrange(povertyE) |>
+  dplyr::slice_head(n = 10) |>
+  dplyr::mutate(rank_group = "Lowest poverty (count)")
+
+combined_tbl <- dplyr::bind_rows(top10_poverty, bottom10_poverty) |>
+  dplyr::select(
+    rank_group,
+    county,
+    povertyE, povertyM,
+    med_incomeE, med_incomeM
+  )
+
+kable(
+  combined_tbl,
+  caption = "Top and bottom 10 Texas counties by number of people below poverty (ACS 2023 5-year).  E = Estimate, M = Margin of Error."
+)
+```
+
+The highest-poverty counties by count are mostly large, population-dense
+counties, while the lowest-poverty counties are small counties with few
+residents. Looking at poverty counts together with median income highlights how
+both population size and income levels shape the distribution of poverty across
+Texas.

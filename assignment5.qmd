@@ -1,0 +1,72 @@
+---
+title: "Assignment 5 – Government Data API"
+format: html
+editor: visual
+---
+
+## 1. Scraping government documents from GovInfo
+
+In this assignment I used the GovInfo search interface to find recent documents related to the **Foreign Relations Committee**. :contentReference[oaicite:1]{index=1}  
+
+1. I went to <https://www.govinfo.gov/app/search/>.
+2. I searched for Foreign Relations Committee hearings and filtered the results to the most recent Congress.
+3. From the search results page, I used the **Download Results** option to export the metadata as both CSV and JSON files.
+4. I saved these files into my Quarto project under the `data/` folder.
+5. Using the provided `govtdata01.R` template, I modified the script so that it:
+   - Reads the CSV and JSON files from the `data/` folder,
+   - Extracts the `pdfLink` for each result,
+   - Downloads the **10 most recent** PDFs into the `files/` folder,
+   - Pauses briefly between downloads to avoid overwhelming the server. :contentReference[oaicite:2]{index=2}  
+
+After running the script, the ten PDFs appear under `files/`, and the `_quarto.yml` `resources:` setting ensures that they are copied into the rendered website.
+
+## 2. Difficulties encountered
+
+### 2.1 Technical and practical issues
+
+While scraping the government data, I ran into several practical difficulties:
+
+- **File paths and working directory**  
+  The script assumes a specific working directory. If RStudio was not set to the project root, the `read.csv()` and `read_json()` calls failed with “cannot open file” errors. I fixed this by explicitly setting the working directory and using relative paths like `data/...` and `files/...`.
+
+- **CSV header rows and formats**  
+  The CSV export from GovInfo includes explanatory header lines before the actual field names. If I did not skip these rows, the data frame loaded incorrectly. Using `skip = 2` (as in the template) made the import work reliably. :contentReference[oaicite:3]{index=3}  
+
+- **Inconsistent or missing links**  
+  Not every record has a clean `pdfLink`. In some cases, the JSON had missing or `NA` values, so the code had to be careful about indexing and only trying to download valid URLs.
+
+- **Download reliability and rate limiting**  
+  Downloading multiple PDFs in a row sometimes led to slow responses or temporary failures. The `tryCatch()` wrapper and a random `Sys.sleep()` between 1–3 seconds helped handle occasional errors gracefully and kept the script from appearing abusive to the server.
+
+### 2.2 How usable is the scraped data?
+
+The metadata and PDFs from GovInfo are **quite usable**, but not “analysis-ready”:
+
+- The JSON metadata provides structured fields such as titles, dates, and committee names, which are very helpful for filtering and organizing hearings.
+- However, the actual **content** of the hearings is embedded in PDF documents, which are not directly machine-readable. To analyze the text (for example, topic modeling or sentiment analysis), I would still need to run an additional PDF-to-text extraction step.
+- Some records are duplicated across different formats, and their identifiers are not always intuitive, so the user must carefully deduplicate or standardize IDs.
+
+Overall, the scraped data works well for building a **corpus of documents**, but it requires extra preprocessing before any quantitative analysis.
+
+### 2.3 How the process could be improved
+
+Several improvements could make this workflow smoother and more robust:
+
+- **Use relative paths and project options**  
+  Instead of hard-coding `setwd("yourpath")`, it would be better to rely on RStudio Projects or the `here` package so that the script always starts from the project root, regardless of machine or user.
+
+- **Filter and validate links before download**  
+  Adding checks to ensure that `pdfLink` is not `NA` and that it starts with `https://` would avoid wasted download attempts.
+
+- **Automated logging of errors**  
+  Extending the `tryCatch()` block to write failed URLs and error messages to a log file would make it easier to re-run only the failed downloads later.
+
+- **Text extraction and additional data cleaning**  
+  A next step would be to automatically convert the downloaded PDFs to text (using packages like `pdftools`) and store them as cleaned `.txt` files. This would make the data much more usable for statistical or text-mining analysis.
+
+- **Parameterization**  
+  Turning the script into a function where I can pass the committee name, number of documents, and output folder as arguments would make it easier to reuse the code for other committees or topics.
+
+## 3. Summary
+
+This assignment showed how to move from a **search interface** on a government website to a reproducible **R script** that downloads primary documents into a structured project. Setting up the file paths correctly, handling messy CSV/JSON exports, and dealing with download errors were the main challenges. Once those issues were resolved, the process of automatically pulling the ten most recent Foreign Relations Committee documents became straightforward, and I now have a reusable template for future government-data projects.

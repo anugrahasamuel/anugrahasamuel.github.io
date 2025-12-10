@@ -1,0 +1,128 @@
+---
+title: "Assignment 4 – Webscraping 1"
+format: html
+editor: visual
+---
+
+## 1. Scraping Wikipedia Foreign Reserve Data
+
+In this assignment I use **rvest** to scrape the table of foreign-exchange reserves from Wikipedia and then clean the resulting data frame.
+
+```{r}
+library(tidyverse)
+library(rvest)
+library(stringr)
+library(lubridate)
+
+url <- "https://en.wikipedia.org/wiki/List_of_countries_by_foreign-exchange_reserves"
+
+wikiforreserve <- read_html(url)
+```
+
+## 1.1 Extract the first table (country-level reserves)
+
+```{r}
+# get all tables from the main content area
+all_tables <- wikiforreserve |>
+  html_nodes(xpath = '//*[@id="mw-content-text"]/div/table')
+
+# first table = country-level reserves
+foreignreserve <- all_tables[[1]] |>
+  html_table(fill = TRUE)
+
+# keep only the first 6 columns (the main country table)
+fores <- foreignreserve[, 1:6]
+
+# give those 6 columns clear names
+names(fores) <- c("Rank", "Country", "Forexres", "Date", "Change", "Sources")
+
+head(fores)
+```
+
+## 2. Cleaning the Data Frame
+
+### 2.1 Clean the Date variable
+
+```{r}
+fores <- fores |>
+  mutate(
+    Date_clean_chr = str_split_fixed(Date, "\\[", n = 2)[, 1] |> str_trim(),
+    Date_clean = dmy(Date_clean_chr)
+  )
+
+fores |>
+  select(Country, Date, Date_clean_chr, Date_clean) |>
+  head()
+```
+
+### 2.2 Remove unneeded rows and clean numeric fields
+
+```{r}
+fores_clean <- fores |>
+  mutate(
+    Forexres_usd = parse_number(Forexres),
+    Change_num   = parse_number(Change)
+  ) |>
+  select(
+    Country,
+    Forexres_usd,
+    Date = Date_clean,
+    Change = Change_num
+  )
+
+head(fores_clean, 10)
+```
+
+## 3. Modifying the Program to Scrape Other Tables
+
+```{r}
+all_tables_df <- wikiforreserve |>
+  html_table(fill = TRUE)
+
+length(all_tables_df)
+```
+
+```{r}
+table2 <- all_tables_df[[2]]
+table3 <- all_tables_df[[3]]
+
+head(table2)
+head(table3)
+```
+
+```{r}
+get_reserve_table <- function(idx) {
+  tab <- all_tables_df[[idx]]
+  tab
+}
+
+example_table <- get_reserve_table(2)
+head(example_table)
+```
+
+## 4. Data Plan for Acquiring Web Data for Research
+
+### 4.1 Define the research question
+Identify variables, scope, and intended analysis.
+
+### 4.2 Identify data sources  
+Prefer official sources (IMF, World Bank, OECD).
+
+### 4.3 Choose collection method  
+rvest for tables, httr/jsonlite for APIs.
+
+### 4.4 Cleaning workflow  
+Standardize names, convert numeric/date fields, remove footnotes.
+
+### 4.5 Storage & documentation  
+Use data/raw and data/clean, maintain a data dictionary.
+
+### 4.6 Update strategy  
+Re-scrape periodically and check layout changes.
+
+### 4.7 Ethics  
+Respect robots.txt and cite data sources properly.
+
+## 5. Summary
+
+This assignment involved scraping with rvest, cleaning variables, extracting multiple tables, and designing a research data acquisition plan.
