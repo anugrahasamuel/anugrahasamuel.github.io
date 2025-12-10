@@ -182,14 +182,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#website-data-load-and-inspect" id="toc-website-data-load-and-inspect" class="nav-link active" data-scroll-target="#website-data-load-and-inspect">1. Website data: load and inspect</a></li>
-  <li><a href="#plot-website-data-interest-over-time" id="toc-plot-website-data-interest-over-time" class="nav-link" data-scroll-target="#plot-website-data-interest-over-time">Plot Website Data (Interest Over Time)</a></li>
-  <li><a href="#get-the-same-queries-via-gtrendsr" id="toc-get-the-same-queries-via-gtrendsr" class="nav-link" data-scroll-target="#get-the-same-queries-via-gtrendsr">2.1 Get the same queries via gtrendsR</a></li>
-  <li><a href="#extract-the-interest_over_time-table" id="toc-extract-the-interest_over_time-table" class="nav-link" data-scroll-target="#extract-the-interest_over_time-table">2.2 Extract the interest_over_time table</a>
-  <ul class="collapse">
-  <li><a href="#plot-the-gtrendsr-data" id="toc-plot-the-gtrendsr-data" class="nav-link" data-scroll-target="#plot-the-gtrendsr-data">Plot the gtrendsR data</a></li>
-  <li><a href="#save-to-csv-and-r-formats" id="toc-save-to-csv-and-r-formats" class="nav-link" data-scroll-target="#save-to-csv-and-r-formats">Save to CSV and R formats</a></li>
-  </ul></li>
+  <li><a href="#google-trends-website-data" id="toc-google-trends-website-data" class="nav-link active" data-scroll-target="#google-trends-website-data">1. Google Trends Website Data</a></li>
+  <li><a href="#google-trends-data-using-gtrendsr" id="toc-google-trends-data-using-gtrendsr" class="nav-link" data-scroll-target="#google-trends-data-using-gtrendsr">2. Google Trends Data Using <code>gtrendsR</code></a></li>
+  <li><a href="#saved-data-files" id="toc-saved-data-files" class="nav-link" data-scroll-target="#saved-data-files">3. Saved Data Files</a></li>
+  <li><a href="#comparison-website-vs.-gtrendsr" id="toc-comparison-website-vs.-gtrendsr" class="nav-link" data-scroll-target="#comparison-website-vs.-gtrendsr">4. Comparison: Website vs.&nbsp;<code>gtrendsR</code></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">5. Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -215,112 +212,183 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="website-data-load-and-inspect" class="level2">
-<h2 class="anchored" data-anchor-id="website-data-load-and-inspect">1. Website data: load and inspect</h2>
+<section id="google-trends-website-data" class="level2">
+<h2 class="anchored" data-anchor-id="google-trends-website-data">1. Google Trends Website Data</h2>
+<p>In this section I use the Google Trends website to download search interest for <strong>Trump</strong>, <strong>Kamala Harris</strong>, and <strong>election</strong> in the United States over the last five years.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.1 Load the CSV you downloaded from Google Trends</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>web_trends <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/web_trends_trump_kamala_election.csv"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">2</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.2 Inspect structure (optional)</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(web_trends)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(web_trends)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the date column to `date`, convert to Date,</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># and make all keyword columns numeric (handle "&lt;1")</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>web_trends <span class="ot">&lt;-</span> web_trends <span class="sc">|&gt;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">date =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">as.Date</span>(date),</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      <span class="sc">-</span>date,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">ifelse</span>(<span class="fu">as.character</span>(.) <span class="sc">==</span> <span class="st">"&lt;1"</span>, <span class="st">"0"</span>, <span class="fu">as.character</span>(.)))</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.3 Check date range and interval</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(web_trends<span class="sc">$</span>date)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">diff</span>(web_trends<span class="sc">$</span>date))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.5.2</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.5.2
+✔ ggplot2   4.0.1     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.1 Load CSV downloaded from Google Trends website</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>web_trends <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/web_trends_trump_harris_election.csv"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">2</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 262 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (2): Kamala Harris: (United States), election: (United States)
+dbl  (1): Trump: (United States)
+date (1): Week
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.2 Inspect structure</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(web_trends)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 262
+Columns: 4
+$ Week                             &lt;date&gt; 2020-12-06, 2020-12-13, 2020-12-20, …
+$ `Trump: (United States)`         &lt;dbl&gt; 5, 5, 6, 5, 15, 12, 11, 4, 3, 4, 3, 2…
+$ `Kamala Harris: (United States)` &lt;chr&gt; "&lt;1", "&lt;1", "&lt;1", "&lt;1", "&lt;1", "&lt;1", "…
+$ `election: (United States)`      &lt;chr&gt; "2", "2", "1", "1", "9", "1", "1", "&lt;…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(web_trends)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  Week       `Trump: (United States)` `Kamala Harris: (United States)`
+  &lt;date&gt;                        &lt;dbl&gt; &lt;chr&gt;                           
+1 2020-12-06                        5 &lt;1                              
+2 2020-12-13                        5 &lt;1                              
+3 2020-12-20                        6 &lt;1                              
+4 2020-12-27                        5 &lt;1                              
+5 2021-01-03                       15 &lt;1                              
+6 2021-01-10                       12 &lt;1                              
+# ℹ 1 more variable: `election: (United States)` &lt;chr&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.3 Clean the date column</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>web_trends <span class="ot">&lt;-</span> web_trends <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">date =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(web_trends<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+"2020-12-06" "2022-03-07" "2023-06-07" "2023-06-07" "2024-09-06" "2025-12-07" </code></pre>
+</div>
+</div>
+<p>In the website download, the first column is the date and the remaining columns give relative search interest (0–100) for each keyword. The spacing between dates tells us whether the series is weekly or daily.</p>
+<hr>
 </section>
-<section id="plot-website-data-interest-over-time" class="level2">
-<h2 class="anchored" data-anchor-id="plot-website-data-interest-over-time">Plot Website Data (Interest Over Time)</h2>
+<section id="google-trends-data-using-gtrendsr" class="level2">
+<h2 class="anchored" data-anchor-id="google-trends-data-using-gtrendsr">2. Google Trends Data Using <code>gtrendsR</code></h2>
+<p>Here I use the <strong>gtrendsR</strong> package and the provided script <code>gtrendsR01.R</code> to collect the same type of search-interest data via the API.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>web_trends_long <span class="ot">&lt;-</span> web_trends <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>date,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"keyword"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"hits"</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(web_trends_long, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Google Trends (website download): Interest over time"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Search interest (0–100)"</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the professor's script (lightly edited to save data)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"gtrendsR01.R"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The script creates the_df from TrumpHarrisElection$interest_over_time</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(the_df)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(the_df)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(the_df<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<p>The main data frame returned by <code>gtrendsR</code> is <code>interest_over_time</code>. It contains:</p>
+<ul>
+<li><code>date</code> – observation date</li>
+<li><code>hits</code> – relative search interest (0–100)</li>
+<li><code>keyword</code> – search term (Trump / Harris / election)</li>
+<li><code>geo</code> – geographic region (here “US”)</li>
+<li><code>gprop</code> – type of Google search (here “web”)</li>
+<li><code>category</code> – Google Trends category (0 means no special category)</li>
+</ul>
+<hr>
 </section>
-<section id="get-the-same-queries-via-gtrendsr" class="level2">
-<h2 class="anchored" data-anchor-id="get-the-same-queries-via-gtrendsr">2.1 Get the same queries via gtrendsR</h2>
+<section id="saved-data-files" class="level2">
+<h2 class="anchored" data-anchor-id="saved-data-files">3. Saved Data Files</h2>
+<p>The modified <code>gtrendsR01.R</code> script saves the results in both CSV and R formats:</p>
+<ul>
+<li><code>data/gtrends_trump_harris_election.csv</code></li>
+<li><code>data/gtrends_trump_harris_election.rds</code></li>
+</ul>
+<p>You can verify these files by loading them back into R:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gt <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">keyword =</span> <span class="fu">c</span>(<span class="st">"Trump"</span>, <span class="st">"Kamala Harris"</span>, <span class="st">"Election"</span>),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">geo     =</span> <span class="st">"US"</span>,          <span class="co"># match the country you used on the website</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">time    =</span> <span class="st">"today 12-m"</span>   <span class="co"># or "2023-01-01 2024-01-01", etc.</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gtrends_saved_csv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gtrends_trump_harris_election.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 786 Columns: 7
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (5): hits, keyword, geo, time, gprop
+dbl  (1): category
+date (1): date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gtrends_saved_rds <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/gtrends_trump_harris_election.rds"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gtrends_saved_csv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 786
+Columns: 7
+$ date     &lt;date&gt; 2020-12-06, 2020-12-13, 2020-12-20, 2020-12-27, 2021-01-03, …
+$ hits     &lt;chr&gt; "5", "5", "6", "5", "15", "12", "11", "4", "3", "4", "3", "2"…
+$ keyword  &lt;chr&gt; "Trump", "Trump", "Trump", "Trump", "Trump", "Trump", "Trump"…
+$ geo      &lt;chr&gt; "US", "US", "US", "US", "US", "US", "US", "US", "US", "US", "…
+$ time     &lt;chr&gt; "today+5-y", "today+5-y", "today+5-y", "today+5-y", "today+5-…
+$ gprop    &lt;chr&gt; "web", "web", "web", "web", "web", "web", "web", "web", "web"…
+$ category &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gtrends_saved_rds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 786
+Columns: 7
+$ date     &lt;dttm&gt; 2020-12-06, 2020-12-13, 2020-12-20, 2020-12-27, 2021-01-03, …
+$ hits     &lt;chr&gt; "5", "5", "6", "5", "15", "12", "11", "4", "3", "4", "3", "2"…
+$ keyword  &lt;chr&gt; "Trump", "Trump", "Trump", "Trump", "Trump", "Trump", "Trump"…
+$ geo      &lt;chr&gt; "US", "US", "US", "US", "US", "US", "US", "US", "US", "US", "…
+$ time     &lt;chr&gt; "today+5-y", "today+5-y", "today+5-y", "today+5-y", "today+5-…
+$ gprop    &lt;chr&gt; "web", "web", "web", "web", "web", "web", "web", "web", "web"…
+$ category &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</code></pre>
+</div>
+</div>
+<p>Both files contain the same information, but the CSV is a plain text file that can be opened in Excel, while the RDS version keeps R data types and is convenient to load directly into R.</p>
+<hr>
 </section>
-<section id="extract-the-interest_over_time-table" class="level1">
-<h1>2.2 Extract the interest_over_time table</h1>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>iot <span class="ot">&lt;-</span> gt<span class="sc">$</span>interest_over_time <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">hits =</span> <span class="fu">as.numeric</span>(<span class="fu">ifelse</span>(hits <span class="sc">==</span> <span class="st">"&lt;1"</span>, <span class="st">"0"</span>, <span class="fu">as.character</span>(hits)))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>iot <span class="ot">&lt;-</span> gt<span class="sc">$</span>interest_over_time</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(iot)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(iot)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(iot<span class="sc">$</span>date)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">diff</span>(iot<span class="sc">$</span>date))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="plot-the-gtrendsr-data" class="level2">
-<h2 class="anchored" data-anchor-id="plot-the-gtrendsr-data">Plot the gtrendsR data</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iot, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Google Trends via gtrendsR: Interest over time"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Search interest (0–100)"</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="comparison-website-vs.-gtrendsr" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-website-vs.-gtrendsr">4. Comparison: Website vs.&nbsp;<code>gtrendsR</code></h2>
+<p><strong>Google Trends Website</strong></p>
+<ul>
+<li>Very easy, point-and-click interface.</li>
+<li>Automatically shows charts and summary statistics.</li>
+<li>Exports a single CSV file with one column per keyword.</li>
+<li>Good for quick, one-off exploration.</li>
+</ul>
+<p><strong><code>gtrendsR</code> Package</strong></p>
+<ul>
+<li>Fully scriptable and reproducible: the code records all settings (keywords, time window, country, etc.).</li>
+<li>Returns a tidy data frame in long format, which is easier to use with packages like <code>dplyr</code> and <code>ggplot2</code>.</li>
+<li>Can be automated or repeated for many different queries.</li>
+<li>Occasionally hits API limits (HTTP 429), which is a practical limitation compared to just using the website.</li>
+</ul>
+<p>Overall, the website is best for quick visualization and basic download, while <code>gtrendsR</code> is better for systematic research where we want to re-run the same analysis or combine multiple queries.</p>
+<hr>
 </section>
-<section id="save-to-csv-and-r-formats" class="level2">
-<h2 class="anchored" data-anchor-id="save-to-csv-and-r-formats">Save to CSV and R formats</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Website data</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(web_trends, <span class="st">"data/web_trends_trump_kamala_election_clean.csv"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(web_trends, <span class="st">"data/web_trends_trump_kamala_election.rds"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># gtrendsR data</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(iot, <span class="st">"data/gtrends_trump_kamala_election.csv"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(iot, <span class="st">"data/gtrends_trump_kamala_election.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">5. Conclusion</h2>
+<p>This assignment showed two complementary ways to collect data from Google Trends. The website interface makes it simple to explore search interest visually and download a ready-made CSV file. The <code>gtrendsR</code> package requires more setup but gives much more control over the query and produces a tidy, reproducible dataset that fits naturally into an R workflow. For a small class exercise either approach works, but for a real research project I would rely on <code>gtrendsR</code> so that my data collection steps are documented in code and can be updated or repeated whenever Google Trends data change.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
