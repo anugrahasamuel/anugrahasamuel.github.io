@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>assignment5 – Anugraha Samuel</title>
+<title>Assignment 5 – Government Data API – Anugraha Samuel</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,15 +142,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#scraping-government-documents-from-govinfo" id="toc-scraping-government-documents-from-govinfo" class="nav-link active" data-scroll-target="#scraping-government-documents-from-govinfo">1. Scraping government documents from GovInfo</a></li>
+  <li><a href="#difficulties-encountered" id="toc-difficulties-encountered" class="nav-link" data-scroll-target="#difficulties-encountered">2. Difficulties encountered</a>
+  <ul class="collapse">
+  <li><a href="#technical-and-practical-issues" id="toc-technical-and-practical-issues" class="nav-link" data-scroll-target="#technical-and-practical-issues">2.1 Technical and practical issues</a></li>
+  <li><a href="#how-usable-is-the-scraped-data" id="toc-how-usable-is-the-scraped-data" class="nav-link" data-scroll-target="#how-usable-is-the-scraped-data">2.2 How usable is the scraped data?</a></li>
+  <li><a href="#how-the-process-could-be-improved" id="toc-how-the-process-could-be-improved" class="nav-link" data-scroll-target="#how-the-process-could-be-improved">2.3 How the process could be improved</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">3. Summary</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">assignment5</h1>
+<h1 class="title">Assignment 5 – Government Data API</h1>
 </div>
 
 
@@ -167,8 +180,73 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="scraping-government-documents-from-govinfo" class="level2">
+<h2 class="anchored" data-anchor-id="scraping-government-documents-from-govinfo">1. Scraping government documents from GovInfo</h2>
+<p>In this assignment I used the GovInfo search interface to find recent documents related to the <strong>Foreign Relations Committee</strong>. :contentReference<span data-index="1">oaicite:1</span></p>
+<ol type="1">
+<li>I went to <a href="https://www.govinfo.gov/app/search/" class="uri">https://www.govinfo.gov/app/search/</a>.</li>
+<li>I searched for Foreign Relations Committee hearings and filtered the results to the most recent Congress.</li>
+<li>From the search results page, I used the <strong>Download Results</strong> option to export the metadata as both CSV and JSON files.</li>
+<li>I saved these files into my Quarto project under the <code>data/</code> folder.</li>
+<li>Using the provided <code>govtdata01.R</code> template, I modified the script so that it:
+<ul>
+<li>Reads the CSV and JSON files from the <code>data/</code> folder,</li>
+<li>Extracts the <code>pdfLink</code> for each result,</li>
+<li>Downloads the <strong>10 most recent</strong> PDFs into the <code>files/</code> folder,</li>
+<li>Pauses briefly between downloads to avoid overwhelming the server. :contentReference<span data-index="2">oaicite:2</span></li>
+</ul></li>
+</ol>
+<p>After running the script, the ten PDFs appear under <code>files/</code>, and the <code>_quarto.yml</code> <code>resources:</code> setting ensures that they are copied into the rendered website.</p>
+</section>
+<section id="difficulties-encountered" class="level2">
+<h2 class="anchored" data-anchor-id="difficulties-encountered">2. Difficulties encountered</h2>
+<section id="technical-and-practical-issues" class="level3">
+<h3 class="anchored" data-anchor-id="technical-and-practical-issues">2.1 Technical and practical issues</h3>
+<p>While scraping the government data, I ran into several practical difficulties:</p>
+<ul>
+<li><p><strong>File paths and working directory</strong><br>
+The script assumes a specific working directory. If RStudio was not set to the project root, the <code>read.csv()</code> and <code>read_json()</code> calls failed with “cannot open file” errors. I fixed this by explicitly setting the working directory and using relative paths like <code>data/...</code> and <code>files/...</code>.</p></li>
+<li><p><strong>CSV header rows and formats</strong><br>
+The CSV export from GovInfo includes explanatory header lines before the actual field names. If I did not skip these rows, the data frame loaded incorrectly. Using <code>skip = 2</code> (as in the template) made the import work reliably. :contentReference<span data-index="3">oaicite:3</span></p></li>
+<li><p><strong>Inconsistent or missing links</strong><br>
+Not every record has a clean <code>pdfLink</code>. In some cases, the JSON had missing or <code>NA</code> values, so the code had to be careful about indexing and only trying to download valid URLs.</p></li>
+<li><p><strong>Download reliability and rate limiting</strong><br>
+Downloading multiple PDFs in a row sometimes led to slow responses or temporary failures. The <code>tryCatch()</code> wrapper and a random <code>Sys.sleep()</code> between 1–3 seconds helped handle occasional errors gracefully and kept the script from appearing abusive to the server.</p></li>
+</ul>
+</section>
+<section id="how-usable-is-the-scraped-data" class="level3">
+<h3 class="anchored" data-anchor-id="how-usable-is-the-scraped-data">2.2 How usable is the scraped data?</h3>
+<p>The metadata and PDFs from GovInfo are <strong>quite usable</strong>, but not “analysis-ready”:</p>
+<ul>
+<li>The JSON metadata provides structured fields such as titles, dates, and committee names, which are very helpful for filtering and organizing hearings.</li>
+<li>However, the actual <strong>content</strong> of the hearings is embedded in PDF documents, which are not directly machine-readable. To analyze the text (for example, topic modeling or sentiment analysis), I would still need to run an additional PDF-to-text extraction step.</li>
+<li>Some records are duplicated across different formats, and their identifiers are not always intuitive, so the user must carefully deduplicate or standardize IDs.</li>
+</ul>
+<p>Overall, the scraped data works well for building a <strong>corpus of documents</strong>, but it requires extra preprocessing before any quantitative analysis.</p>
+</section>
+<section id="how-the-process-could-be-improved" class="level3">
+<h3 class="anchored" data-anchor-id="how-the-process-could-be-improved">2.3 How the process could be improved</h3>
+<p>Several improvements could make this workflow smoother and more robust:</p>
+<ul>
+<li><p><strong>Use relative paths and project options</strong><br>
+Instead of hard-coding <code>setwd("yourpath")</code>, it would be better to rely on RStudio Projects or the <code>here</code> package so that the script always starts from the project root, regardless of machine or user.</p></li>
+<li><p><strong>Filter and validate links before download</strong><br>
+Adding checks to ensure that <code>pdfLink</code> is not <code>NA</code> and that it starts with <code>https://</code> would avoid wasted download attempts.</p></li>
+<li><p><strong>Automated logging of errors</strong><br>
+Extending the <code>tryCatch()</code> block to write failed URLs and error messages to a log file would make it easier to re-run only the failed downloads later.</p></li>
+<li><p><strong>Text extraction and additional data cleaning</strong><br>
+A next step would be to automatically convert the downloaded PDFs to text (using packages like <code>pdftools</code>) and store them as cleaned <code>.txt</code> files. This would make the data much more usable for statistical or text-mining analysis.</p></li>
+<li><p><strong>Parameterization</strong><br>
+Turning the script into a function where I can pass the committee name, number of documents, and output folder as arguments would make it easier to reuse the code for other committees or topics.</p></li>
+</ul>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">3. Summary</h2>
+<p>This assignment showed how to move from a <strong>search interface</strong> on a government website to a reproducible <strong>R script</strong> that downloads primary documents into a structured project. Setting up the file paths correctly, handling messy CSV/JSON exports, and dealing with download errors were the main challenges. Once those issues were resolved, the process of automatically pulling the ten most recent Foreign Relations Committee documents became straightforward, and I now have a reusable template for future government-data projects.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

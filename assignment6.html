@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>assignment6 – Anugraha Samuel</title>
+<title>Assignment 6 – Text Analytics using quanteda – Anugraha Samuel</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -142,15 +177,33 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reading-about-the-quanteda-package" id="toc-reading-about-the-quanteda-package" class="nav-link active" data-scroll-target="#reading-about-the-quanteda-package">1. Reading about the quanteda package</a></li>
+  <li><a href="#bidenxi-summit-tweets" id="toc-bidenxi-summit-tweets" class="nav-link" data-scroll-target="#bidenxi-summit-tweets">2. Biden–Xi Summit Tweets</a>
+  <ul class="collapse">
+  <li><a href="#run-the-script" id="toc-run-the-script" class="nav-link" data-scroll-target="#run-the-script">2.1 Run the script</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">2.2 Interpretation</a></li>
+  </ul></li>
+  <li><a href="#u.s.-presidential-inaugural-speeches" id="toc-u.s.-presidential-inaugural-speeches" class="nav-link" data-scroll-target="#u.s.-presidential-inaugural-speeches">3. U.S. Presidential Inaugural Speeches</a>
+  <ul class="collapse">
+  <li><a href="#run-the-script-1" id="toc-run-the-script-1" class="nav-link" data-scroll-target="#run-the-script-1">3.1 Run the script</a></li>
+  <li><a href="#interpretation-1" id="toc-interpretation-1" class="nav-link" data-scroll-target="#interpretation-1">3.2 Interpretation</a></li>
+  </ul></li>
+  <li><a href="#what-is-wordfish" id="toc-what-is-wordfish" class="nav-link" data-scroll-target="#what-is-wordfish">4. What is Wordfish?</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">assignment6</h1>
+<h1 class="title">Assignment 6 – Text Analytics using quanteda</h1>
 </div>
 
 
@@ -167,8 +220,236 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="reading-about-the-quanteda-package" class="level2">
+<h2 class="anchored" data-anchor-id="reading-about-the-quanteda-package">1. Reading about the quanteda package</h2>
+<p>The <strong>quanteda</strong> package is a comprehensive framework for quantitative text analysis in R. It provides tools for importing text, cleaning it, tokenizing it, and converting it into document–feature matrices (DFMs). From these DFMs, users can apply advanced text-analysis methods such as word clouds, keyness comparison, topic modeling, co-occurrence networks, and scaling models such as LSA, Wordfish, and Wordscores. Compared to base R text processing, quanteda makes it faster and more efficient to process large text collections and run reproducible analyses.</p>
+<hr>
+</section>
+<section id="bidenxi-summit-tweets" class="level2">
+<h2 class="anchored" data-anchor-id="bidenxi-summit-tweets">2. Biden–Xi Summit Tweets</h2>
+<p>This section uses the code in <strong>quanteda_textanalytics01.R</strong>.<br>
+The script loads tweets about the November 2021 Biden–Xi virtual summit, builds DFMs, performs latent semantic analysis (LSA), and plots hashtag and user networks.</p>
+<section id="run-the-script" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-script">2.1 Run the script</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"quanteda_textanalytics01.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Package version: 4.3.1
+Unicode version: 14.0
+ICU version: 71.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Parallel computing: disabled</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>See https://quanteda.io for tutorials and examples.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 14520 Columns: 90</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (50): screen_name, text, source, reply_to_screen_name, hashtags, symbol...
+dbl  (26): user_id, status_id, display_text_width, reply_to_status_id, reply...
+lgl  (10): is_quote, is_retweet, quote_count, reply_count, ext_media_type, q...
+dttm  (4): created_at, quoted_created_at, retweet_created_at, account_create...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation">2.2 Interpretation</h3>
+<section id="lsa-latent-semantic-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="lsa-latent-semantic-analysis"><em>LSA (Latent Semantic Analysis)</em></h4>
+<p>The LSA output shows that tweets cluster into several thematic groups. Based on the most frequent terms in each dimension, the discussions appear to revolve around:</p>
+<ul>
+<li><strong>Diplomacy &amp; cooperation</strong> (summit, meeting, leaders, virtual talks)<br>
+</li>
+<li><strong>Geopolitical tension</strong> (China, security, human rights, Taiwan)<br>
+</li>
+<li><strong>U.S. domestic reactions</strong> (journalists, think-tank commentary)</li>
+</ul>
+<p>These clusters reflect how Twitter conversations typically separate into news reporting, political opinion, and geopolitical analysis.</p>
+</section>
+<section id="hashtag-network-plot" class="level4">
+<h4 class="anchored" data-anchor-id="hashtag-network-plot"><em>Hashtag Network Plot</em></h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_network</span>(topgat_fcm, <span class="at">min_freq =</span> <span class="dv">50</span>, <span class="at">edge_alpha =</span> <span class="fl">0.8</span>, <span class="at">edge_size =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="assignment6_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The hashtag network reveals groups of frequently co-occurring hashtags. For example:</p>
+<ul>
+<li>News-related tags (#Breaking, #US, #China)<br>
+</li>
+<li>Political commentary tags (#Biden, #XiJinping)<br>
+</li>
+<li>Issue-specific tags (e.g., related to trade, security, diplomacy)</li>
+</ul>
+<p>Hashtags that appear close together represent shared topics in the discourse.</p>
+</section>
+<section id="user-mention-network-plot" class="level4">
+<h4 class="anchored" data-anchor-id="user-mention-network-plot"><em>User Mention Network Plot</em></h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_network</span>(user_fcm, <span class="at">min_freq =</span> <span class="dv">20</span>, <span class="at">edge_color =</span> <span class="st">"firebrick"</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">edge_alpha =</span> <span class="fl">0.8</span>, <span class="at">edge_size =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="assignment6_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This network shows which accounts dominate the conversation. Central users typically include:</p>
+<ul>
+<li>Journalists reporting on the summit<br>
+</li>
+<li>News outlets<br>
+</li>
+<li>Political commentators<br>
+</li>
+<li>Analysts covering U.S.–China relations</li>
+</ul>
+<p>The high degree of clustering indicates that a small number of influential accounts shape much of the discussion.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="u.s.-presidential-inaugural-speeches" class="level2">
+<h2 class="anchored" data-anchor-id="u.s.-presidential-inaugural-speeches">3. U.S. Presidential Inaugural Speeches</h2>
+<p>This section uses the code in <strong>quanteda_textanalytics02.R</strong>.<br>
+The script analyzes the U.S. inaugural address corpus using wordclouds, keyword-in-context (KWIC), frequency charts, and text scaling.</p>
+<section id="run-the-script-1" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-script-1">3.1 Run the script</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"quanteda_textanalytics02.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="assignment6_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="assignment6_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="assignment6_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interpretation-1" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-1">3.2 Interpretation</h3>
+<section id="early-inaugural-speech-wordclouds" class="level4">
+<h4 class="anchored" data-anchor-id="early-inaugural-speech-wordclouds"><em>Early Inaugural Speech Wordclouds</em></h4>
+<p>The earliest speeches (1789–1826) emphasize terms such as <em>government</em>, <em>duty</em>, <em>public</em>, <em>union</em>, and <em>people</em>.<br>
+This reflects the period’s preoccupation with defining governmental roles and stabilizing the new republic.</p>
+</section>
+<section id="comparing-bush-obama-and-trump-wordclouds" class="level4">
+<h4 class="anchored" data-anchor-id="comparing-bush-obama-and-trump-wordclouds"><em>Comparing Bush, Obama, and Trump Wordclouds</em></h4>
+<p>The comparison wordcloud shows clear stylistic differences:</p>
+<ul>
+<li><strong>Bush</strong>: terms relating to security, freedom, resolve<br>
+</li>
+<li><strong>Obama</strong>: focus on hope, unity, responsibility<br>
+</li>
+<li><strong>Trump</strong>: “America-first” framing, strong emphasis on national identity</li>
+</ul>
+<p>These terms highlight ideological and rhetorical distinctions between administrations.</p>
+</section>
+<section id="kwic-x-ray-plots" class="level4">
+<h4 class="anchored" data-anchor-id="kwic-x-ray-plots"><em>KWIC + X-Ray Plots</em></h4>
+<p>KWIC searches for words such as <strong>“american”</strong>, <strong>“people”</strong>, and <strong>“communist”</strong> reveal how each term’s use varies by president.<br>
+The x-ray plot shows that:</p>
+<ul>
+<li>“American” appears more frequently in later decades<br>
+</li>
+<li>“People” remains a consistently common term<br>
+</li>
+<li>“Communist” spikes during Cold War speeches</li>
+</ul>
+</section>
+<section id="frequency-plot-for-american" class="level4">
+<h4 class="anchored" data-anchor-id="frequency-plot-for-american"><em>Frequency Plot for “american”</em></h4>
+<p>This plot shows the rising use of the term “american” over time.<br>
+It suggests a growing rhetorical emphasis on national identity throughout the 20th and 21st centuries.</p>
+</section>
+<section id="keyness-analysis-trump-vs.-obama" class="level4">
+<h4 class="anchored" data-anchor-id="keyness-analysis-trump-vs.-obama"><em>Keyness Analysis: Trump vs.&nbsp;Obama</em></h4>
+<p>Keyness identifies words most strongly associated with one president versus the other.</p>
+<ul>
+<li>Words with <strong>positive keyness</strong> → more common in Trump’s speech<br>
+</li>
+<li>Words with <strong>negative keyness</strong> → more common in Obama’s speech</li>
+</ul>
+<p>This captures stylistic and thematic contrasts between the two presidents.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="what-is-wordfish" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-wordfish">4. What is Wordfish?</h2>
+<p><strong>Wordfish</strong> is an <strong>unsupervised text scaling model</strong> that estimates:</p>
+<ul>
+<li>A latent dimension (e.g., ideology)</li>
+<li>Word discrimination values</li>
+<li>Document positions on the latent scale</li>
+</ul>
+<p>It uses a Poisson model of word counts:</p>
+<ul>
+<li>Words that strongly indicate one side of the scale receive high discrimination values<br>
+</li>
+<li>Documents containing those words more frequently get shifted toward that side of the latent dimension</li>
+</ul>
+<p>The model is often used to measure:</p>
+<ul>
+<li>Party ideology<br>
+</li>
+<li>Policy stance<br>
+</li>
+<li>Rhetorical positioning</li>
+</ul>
+<p>In this assignment’s script, Wordfish is demonstrated using Irish budget speeches, showing how parties and years align on an inferred economic policy dimension.</p>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This assignment demonstrated how quanteda enables:</p>
+<ul>
+<li>Large-scale text preprocessing<br>
+</li>
+<li>Exploratory visualizations (wordclouds, networks, frequency plots)<br>
+</li>
+<li>Advanced modeling (LSA, keyness, Wordfish)<br>
+</li>
+<li>Interpretation of political and social communication via text analytics</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

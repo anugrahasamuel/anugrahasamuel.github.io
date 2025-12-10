@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>assignment4 – Anugraha Samuel</title>
+<title>Assignment 4 – Webscraping 1 – Anugraha Samuel</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -142,15 +177,39 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#scraping-wikipedia-foreign-reserve-data" id="toc-scraping-wikipedia-foreign-reserve-data" class="nav-link active" data-scroll-target="#scraping-wikipedia-foreign-reserve-data">1. Scraping Wikipedia Foreign Reserve Data</a></li>
+  <li><a href="#extract-the-first-table-country-level-reserves" id="toc-extract-the-first-table-country-level-reserves" class="nav-link" data-scroll-target="#extract-the-first-table-country-level-reserves">1.1 Extract the first table (country-level reserves)</a></li>
+  <li><a href="#cleaning-the-data-frame" id="toc-cleaning-the-data-frame" class="nav-link" data-scroll-target="#cleaning-the-data-frame">2. Cleaning the Data Frame</a>
+  <ul class="collapse">
+  <li><a href="#clean-the-date-variable" id="toc-clean-the-date-variable" class="nav-link" data-scroll-target="#clean-the-date-variable">2.1 Clean the Date variable</a></li>
+  <li><a href="#remove-unneeded-rows-and-clean-numeric-fields" id="toc-remove-unneeded-rows-and-clean-numeric-fields" class="nav-link" data-scroll-target="#remove-unneeded-rows-and-clean-numeric-fields">2.2 Remove unneeded rows and clean numeric fields</a></li>
+  </ul></li>
+  <li><a href="#modifying-the-program-to-scrape-other-tables" id="toc-modifying-the-program-to-scrape-other-tables" class="nav-link" data-scroll-target="#modifying-the-program-to-scrape-other-tables">3. Modifying the Program to Scrape Other Tables</a></li>
+  <li><a href="#data-plan-for-acquiring-web-data-for-research" id="toc-data-plan-for-acquiring-web-data-for-research" class="nav-link" data-scroll-target="#data-plan-for-acquiring-web-data-for-research">4. Data Plan for Acquiring Web Data for Research</a>
+  <ul class="collapse">
+  <li><a href="#define-the-research-question" id="toc-define-the-research-question" class="nav-link" data-scroll-target="#define-the-research-question">4.1 Define the research question</a></li>
+  <li><a href="#identify-data-sources" id="toc-identify-data-sources" class="nav-link" data-scroll-target="#identify-data-sources">4.2 Identify data sources</a></li>
+  <li><a href="#choose-collection-method" id="toc-choose-collection-method" class="nav-link" data-scroll-target="#choose-collection-method">4.3 Choose collection method</a></li>
+  <li><a href="#cleaning-workflow" id="toc-cleaning-workflow" class="nav-link" data-scroll-target="#cleaning-workflow">4.4 Cleaning workflow</a></li>
+  <li><a href="#storage-documentation" id="toc-storage-documentation" class="nav-link" data-scroll-target="#storage-documentation">4.5 Storage &amp; documentation</a></li>
+  <li><a href="#update-strategy" id="toc-update-strategy" class="nav-link" data-scroll-target="#update-strategy">4.6 Update strategy</a></li>
+  <li><a href="#ethics" id="toc-ethics" class="nav-link" data-scroll-target="#ethics">4.7 Ethics</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">5. Summary</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">assignment4</h1>
+<h1 class="title">Assignment 4 – Webscraping 1</h1>
 </div>
 
 
@@ -167,8 +226,266 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="scraping-wikipedia-foreign-reserve-data" class="level2">
+<h2 class="anchored" data-anchor-id="scraping-wikipedia-foreign-reserve-data">1. Scraping Wikipedia Foreign Reserve Data</h2>
+<p>In this assignment I use <strong>rvest</strong> to scrape the table of foreign-exchange reserves from Wikipedia and then clean the resulting data frame.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.5.2
+✔ ggplot2   4.0.1     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'rvest'
+
+The following object is masked from 'package:readr':
+
+    guess_encoding</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_countries_by_foreign-exchange_reserves"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>wikiforreserve <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="extract-the-first-table-country-level-reserves" class="level2">
+<h2 class="anchored" data-anchor-id="extract-the-first-table-country-level-reserves">1.1 Extract the first table (country-level reserves)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get all tables from the main content area</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>all_tables <span class="ot">&lt;-</span> wikiforreserve <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_nodes</span>(<span class="at">xpath =</span> <span class="st">'//*[@id="mw-content-text"]/div/table'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># first table = country-level reserves</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>foreignreserve <span class="ot">&lt;-</span> all_tables[[<span class="dv">1</span>]] <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># keep only the first 6 columns (the main country table)</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>fores <span class="ot">&lt;-</span> foreignreserve[, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># give those 6 columns clear names</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(fores) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Rank"</span>, <span class="st">"Country"</span>, <span class="st">"Forexres"</span>, <span class="st">"Date"</span>, <span class="st">"Change"</span>, <span class="st">"Sources"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fores)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  Rank                               Country     Forexres   Date  Change Sources
+  &lt;chr&gt;                              &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+1 Country(as recognized by the U.N.) Continent   Including… Incl… Exclu… Exclud…
+2 Country(as recognized by the U.N.) Continent   millions … Chan… milli… Change 
+3 China                              Asia        3,643,149  41,0… 3,389… 31,221 
+4 Japan                              Asia        1,324,210  19,7… 1,230… 16,230 
+5 Switzerland                        Europe      1,007,710  13,9… 897,2… 14,490 
+6 Russia                             Europe/Asia 734,100    14,3… 434,4… 1,517  </code></pre>
+</div>
+</div>
+</section>
+<section id="cleaning-the-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-the-data-frame">2. Cleaning the Data Frame</h2>
+<section id="clean-the-date-variable" class="level3">
+<h3 class="anchored" data-anchor-id="clean-the-date-variable">2.1 Clean the Date variable</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fores <span class="ot">&lt;-</span> fores <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date_clean_chr =</span> <span class="fu">str_split_fixed</span>(Date, <span class="st">"</span><span class="sc">\\</span><span class="st">["</span>, <span class="at">n =</span> <span class="dv">2</span>)[, <span class="dv">1</span>] <span class="sc">|&gt;</span> <span class="fu">str_trim</span>(),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date_clean =</span> <span class="fu">dmy</span>(Date_clean_chr)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `Date_clean = dmy(Date_clean_chr)`.
+Caused by warning:
+! All formats failed to parse. No formats found.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fores <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Country, Date, Date_clean_chr, Date_clean) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  Country     Date           Date_clean_chr Date_clean
+  &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;          &lt;date&gt;    
+1 Continent   Including gold Including gold NA        
+2 Continent   Change         Change         NA        
+3 Asia        41,079         41,079         NA        
+4 Asia        19,774         19,774         NA        
+5 Europe      13,935         13,935         NA        
+6 Europe/Asia 14,300         14,300         NA        </code></pre>
+</div>
+</div>
+</section>
+<section id="remove-unneeded-rows-and-clean-numeric-fields" class="level3">
+<h3 class="anchored" data-anchor-id="remove-unneeded-rows-and-clean-numeric-fields">2.2 Remove unneeded rows and clean numeric fields</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fores_clean <span class="ot">&lt;-</span> fores <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Forexres_usd =</span> <span class="fu">parse_number</span>(Forexres),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Change_num   =</span> <span class="fu">parse_number</span>(Change)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    Country,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    Forexres_usd,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date =</span> Date_clean,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Change =</span> Change_num</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 2 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `Forexres_usd = parse_number(Forexres)`.
+Caused by warning:
+! 2 parsing failures.
+row col expected         actual
+  1  -- a number Including gold
+  2  -- a number millions U.S.$
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 1 remaining warning.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fores_clean, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   Country     Forexres_usd Date    Change
+   &lt;chr&gt;              &lt;dbl&gt; &lt;date&gt;   &lt;dbl&gt;
+ 1 Continent             NA NA          NA
+ 2 Continent             NA NA          NA
+ 3 Asia             3643149 NA     3389306
+ 4 Asia             1324210 NA     1230940
+ 5 Europe           1007710 NA      897295
+ 6 Europe/Asia       734100 NA      434487
+ 7 Asia              692576 NA      585719
+ 8 Asia              597430 NA      544300
+ 9 Asia              434547 NA      434116
+10 Asia              421400 NA      416216</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="modifying-the-program-to-scrape-other-tables" class="level2">
+<h2 class="anchored" data-anchor-id="modifying-the-program-to-scrape-other-tables">3. Modifying the Program to Scrape Other Tables</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>all_tables_df <span class="ot">&lt;-</span> wikiforreserve <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(all_tables_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>table2 <span class="ot">&lt;-</span> all_tables_df[[<span class="dv">2</span>]]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>table3 <span class="ot">&lt;-</span> all_tables_df[[<span class="dv">3</span>]]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(table2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 15
+  ``                      `` ``    Currency composition…¹ Currency composition…²
+  &lt;chr&gt;                &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                  &lt;chr&gt;                 
+1 ""                      NA ""    USD                    EUR                   
+2 "@supports(writing-…  2019 "Q1"  6,727.09               2,208.79              
+3 "@supports(writing-…  2019 "Q2"  6,752.28               2,264.88              
+4 "@supports(writing-…  2019 "Q3"  6,728.85               2,212.74              
+5 "@supports(writing-…  2019 "Q4"  6,674.83               2,279.30              
+6 "@supports(writing-…  2020 "Q1"  6,794.91               2,197.30              
+# ℹ abbreviated names:
+#   ¹​`Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]`,
+#   ²​`Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]`
+# ℹ 10 more variables:
+#   `Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]` &lt;chr&gt;,
+#   `Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]` &lt;chr&gt;,
+#   `Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]` &lt;chr&gt;, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(table3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  .mw-parser-output .navbar{display:inline;font-size:88…¹ .mw-parser-output .n…²
+  &lt;chr&gt;                                                   &lt;chr&gt;                 
+1 Global                                                  "Bank for Internation…
+2 Policies                                                "Basel Accords\nCapit…
+3 Bretton Woodssystem                                     "International Moneta…
+4 Lists                                                   "List of central bank…
+# ℹ abbreviated names:
+#   ¹​`.mw-parser-output .navbar{display:inline;font-size:88%;font-weight:normal}.mw-parser-output .navbar-collapse{float:left;text-align:left}.mw-parser-output .navbar-boxtext{word-spacing:0}.mw-parser-output .navbar ul{display:inline-block;white-space:nowrap;line-height:inherit}.mw-parser-output .navbar-brackets::before{margin-right:-0.125em;content:"[ "}.mw-parser-output .navbar-brackets::after{margin-left:-0.125em;content:" ]"}.mw-parser-output .navbar li{word-spacing:-0.125em}.mw-parser-output .navbar a&gt;span,.mw-parser-output .navbar a&gt;abbr{text-decoration:inherit}.mw-parser-output .navbar-mini abbr{font-variant:small-caps;border-bottom:none;text-decoration:none;cursor:inherit}.mw-parser-output .navbar-ct-full{font-size:114%;margin:0 7em}.mw-parser-output .navbar-ct-mini{font-size:114%;margin:0 4em}html.skin-theme-clientpref-night .mw-parser-output .navbar li a abbr{color:var(--color-base)!important}@media(prefers-color-scheme:dark){html.skin-theme-clientpref-os .mw-parser-output .navbar li a abbr{color:var(--color-base)!important}}@media print{.mw-parser-output .navbar{display:none!important}}vteCentral banks`,
+#   ²​`.mw-parser-output .navbar{display:inline;font-size:88%;font-weight:normal}.mw-parser-output .navbar-collapse{float:left;text-align:left}.mw-parser-output .navbar-boxtext{word-spacing:0}.mw-parser-output .navbar ul{display:inline-block;white-space:nowrap;line-height:inherit}.mw-parser-output .navbar-brackets::before{margin-right:-0.125em;content:"[ "}.mw-parser-output .navbar-brackets::after{margin-left:-0.125em;content:" ]"}.mw-parser-output .navbar li{word-spacing:-0.125em}.mw-parser-output .navbar a&gt;span,.mw-parser-output .navbar a&gt;abbr{text-decoration:inherit}.mw-parser-output .navbar-mini abbr{font-variant:small-caps;border-bottom:none;text-decoration:none;cursor:inherit}.mw-parser-output .navbar-ct-full{font-size:114%;margin:0 7em}.mw-parser-output .navbar-ct-mini{font-size:114%;margin:0 4em}html.skin-theme-clientpref-night .mw-parser-output .navbar li a abbr{color:var(--color-base)!important}@media(prefers-color-scheme:dark){html.skin-theme-clientpref-os .mw-parser-output .navbar li a abbr{color:var(--color-base)!important}}@media print{.mw-parser-output .navbar{display:none!important}}vteCentral banks`</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>get_reserve_table <span class="ot">&lt;-</span> <span class="cf">function</span>(idx) {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  tab <span class="ot">&lt;-</span> all_tables_df[[idx]]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  tab</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>example_table <span class="ot">&lt;-</span> <span class="fu">get_reserve_table</span>(<span class="dv">2</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_table)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 15
+  ``                      `` ``    Currency composition…¹ Currency composition…²
+  &lt;chr&gt;                &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                  &lt;chr&gt;                 
+1 ""                      NA ""    USD                    EUR                   
+2 "@supports(writing-…  2019 "Q1"  6,727.09               2,208.79              
+3 "@supports(writing-…  2019 "Q2"  6,752.28               2,264.88              
+4 "@supports(writing-…  2019 "Q3"  6,728.85               2,212.74              
+5 "@supports(writing-…  2019 "Q4"  6,674.83               2,279.30              
+6 "@supports(writing-…  2020 "Q1"  6,794.91               2,197.30              
+# ℹ abbreviated names:
+#   ¹​`Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]`,
+#   ²​`Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]`
+# ℹ 10 more variables:
+#   `Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]` &lt;chr&gt;,
+#   `Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]` &lt;chr&gt;,
+#   `Currency composition of foreign exchange reserves (COFER) (billion U.S$.)[213]` &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="data-plan-for-acquiring-web-data-for-research" class="level2">
+<h2 class="anchored" data-anchor-id="data-plan-for-acquiring-web-data-for-research">4. Data Plan for Acquiring Web Data for Research</h2>
+<section id="define-the-research-question" class="level3">
+<h3 class="anchored" data-anchor-id="define-the-research-question">4.1 Define the research question</h3>
+<p>Identify variables, scope, and intended analysis.</p>
+</section>
+<section id="identify-data-sources" class="level3">
+<h3 class="anchored" data-anchor-id="identify-data-sources">4.2 Identify data sources</h3>
+<p>Prefer official sources (IMF, World Bank, OECD).</p>
+</section>
+<section id="choose-collection-method" class="level3">
+<h3 class="anchored" data-anchor-id="choose-collection-method">4.3 Choose collection method</h3>
+<p>rvest for tables, httr/jsonlite for APIs.</p>
+</section>
+<section id="cleaning-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="cleaning-workflow">4.4 Cleaning workflow</h3>
+<p>Standardize names, convert numeric/date fields, remove footnotes.</p>
+</section>
+<section id="storage-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="storage-documentation">4.5 Storage &amp; documentation</h3>
+<p>Use data/raw and data/clean, maintain a data dictionary.</p>
+</section>
+<section id="update-strategy" class="level3">
+<h3 class="anchored" data-anchor-id="update-strategy">4.6 Update strategy</h3>
+<p>Re-scrape periodically and check layout changes.</p>
+</section>
+<section id="ethics" class="level3">
+<h3 class="anchored" data-anchor-id="ethics">4.7 Ethics</h3>
+<p>Respect robots.txt and cite data sources properly.</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">5. Summary</h2>
+<p>This assignment involved scraping with rvest, cleaning variables, extracting multiple tables, and designing a research data acquisition plan.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
