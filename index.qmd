@@ -1,11 +1,119 @@
 ---
-title: "anugrahasamuel.github.io"
+page-layout: full
+toc: false
 ---
 
-This is a Quarto website.
+::: {.hero-section}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+<div class="hero-kicker">DATA VISUALIZATION PORTFOLIO</div>
 
-```{r}
-1 + 1 + 1
-```
+# Anugraha Samuel
+
+## Social Data Analytics · Data Visualization · Social Research
+
+I use data, visual evidence, and computational methods to explore social questions, identify patterns, and communicate findings clearly.
+
+<div class="hero-actions">
+
+[Explore Projects](#featured-projects){.btn .btn-primary .btn-lg}
+
+[About Me](about.html){.btn .btn-outline-secondary .btn-lg}
+
+</div>
+
+:::
+
+
+::: {.home-section}
+
+## Featured Projects {#featured-projects}
+
+A selection of visualization and data-analysis projects completed as part of my graduate coursework in Data Visualization.
+
+::: {.project-grid}
+
+::: {.project-card}
+
+<div class="project-label">DATA & TRENDS</div>
+
+### Google Trends and Search Interest
+
+Exploring changes in public search attention over time using Google Trends data and reproducible R workflows.
+
+<div class="project-meta">R · gtrendsR · ggplot2 · Time Series</div>
+
+[View Project →](assignment2.html){.project-link}
+
+:::
+
+
+::: {.project-card}
+
+<div class="project-label">SPATIAL DATA</div>
+
+### Mapping Income and Poverty in Texas
+
+Using American Community Survey data to explore geographic patterns through maps and statistical visualization.
+
+<div class="project-meta">R · tidycensus · sf · ggplot2</div>
+
+[View Project →](assignment3.html){.project-link}
+
+:::
+
+
+::: {.project-card}
+
+<div class="project-label">TEXT AS DATA</div>
+
+### Exploring Text Through Quantitative Analysis
+
+Applying computational text-analysis methods to identify patterns, relationships, and structure in textual data.
+
+<div class="project-meta">R · quanteda · Text Analysis · Networks</div>
+
+[View Project →](assignment6.html){.project-link}
+
+:::
+
+:::
+
+:::
+
+
+::: {.home-section .coursework-section}
+
+## Coursework
+
+This website documents my work for **EPPS 6356: Data Visualization**. Each assignment applies visualization and computational techniques to different types of social data.
+
+<div class="assignment-links">
+
+[Assignment 1](assignment1.html)
+
+[Assignment 2](assignment2.html)
+
+[Assignment 3](assignment3.html)
+
+[Assignment 4](assignment4.html)
+
+[Assignment 5](assignment5.html)
+
+[Assignment 6](assignment6.html)
+
+</div>
+
+:::
+
+
+::: {.home-section .about-preview}
+
+## About This Portfolio
+
+The goal of this portfolio is not only to present finished visualizations, but also to document the decisions behind them: how data are collected, transformed, represented, interpreted, and evaluated.
+
+The projects emphasize clear visual communication, reproducible analysis, responsible use of data, and critical interpretation of evidence.
+
+[Learn more about me →](about.html){.about-link}
+
+:::

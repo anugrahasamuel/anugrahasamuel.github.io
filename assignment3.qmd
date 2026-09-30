@@ -12,8 +12,7 @@ editor: visual
 
 ## Objective
 
-In this assignment, I use ACS 2023 5-year data to map median household income
-and summarize poverty for Texas counties.
+In this assignment, I use ACS 2023 5-year data to map median household income and summarize poverty for Texas counties.
 
 ```{r}
 #| label: setup-packages
@@ -94,9 +93,7 @@ ggplot(tx_acs) +
   theme_minimal()
 ```
 
-The map shows that counties around large metros such as Dallas–Fort Worth,
-Austin, and Houston tend to have higher median incomes, while many rural
-counties in West and South Texas have lower incomes.
+The map shows that counties around large metros such as Dallas–Fort Worth, Austin, and Houston tend to have higher median incomes, while many rural counties in West and South Texas have lower incomes.
 
 ## Table: top and bottom 10 counties by people below poverty
 
@@ -140,8 +137,4 @@ kable(
 )
 ```
 
-The highest-poverty counties by count are mostly large, population-dense
-counties, while the lowest-poverty counties are small counties with few
-residents. Looking at poverty counts together with median income highlights how
-both population size and income levels shape the distribution of poverty across
-Texas.
+The highest-poverty counties by count are mostly large, population-dense counties, while the lowest-poverty counties are small counties with few residents. Looking at poverty counts together with median income highlights how both population size and income levels shape the distribution of poverty across Texas.

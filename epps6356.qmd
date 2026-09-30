@@ -1,0 +1,112 @@
+---
+title: "EPPS 6356 Data Visualisation"
+page-layout: full
+toc: false
+---
+
+::: {.course-hero}
+
+<div class="course-kicker">THE UNIVERSITY OF TEXAS AT DALLAS</div>
+
+# EPPS 6356
+
+## Data Visualisation
+
+**Fall 2026**
+
+This page documents my coursework, visual analyses, and projects for EPPS 6356: Data Visualisation.
+
+The course focuses on using data visualization as a tool for analysis and communication, with attention to evidence, perception, design choices, reproducibility, and critical interpretation.
+
+:::
+
+
+::: {.course-section}
+
+## Coursework
+
+Throughout the semester, assignments will explore different approaches to collecting, transforming, visualizing, and interpreting data.
+
+The completed assignments will be added here as the course progresses.
+
+::: {.course-grid}
+
+::: {.course-card}
+
+### Assignment 1
+
+Course assignment and visualization project.
+
+[View Assignment 1](assignment01.qmd)
+
+:::
+
+
+::: {.course-card}
+
+### Assignment 2
+
+Course assignment and visualization project.
+
+**Coming soon**
+
+:::
+
+
+::: {.course-card}
+
+### Assignment 3
+
+Course assignment and visualization project.
+
+**Coming soon**
+
+:::
+
+
+::: {.course-card}
+
+### Assignment 4
+
+Course assignment and visualization project.
+
+**Coming soon**
+
+:::
+
+
+::: {.course-card}
+
+### Assignment 5
+
+Course assignment and visualization project.
+
+**Coming soon**
+
+:::
+
+
+::: {.course-card}
+
+### Assignment 6
+
+Course assignment and visualization project.
+
+**Coming soon**
+
+:::
+
+:::
+
+:::
+
+
+::: {.course-section}
+
+## About the Course
+
+EPPS 6356 approaches data visualization as more than the production of charts. The coursework considers how visual representations shape interpretation and how visualization choices should be supported by appropriate data, analytical reasoning, and evidence.
+
+As assignments are completed, this page will serve as an organized record of my work throughout the semester.
+
+:::

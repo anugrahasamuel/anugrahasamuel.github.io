@@ -1,1 +1,709 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 /* css styles */
+/* headings a bit bolder + spacing */
+h1, h2, h3 { letter-spacing: .2px; }
+
+/* nicer code block radius + subtle shadow */
+.quarto-code-copy-target, pre code, pre { border-radius: 10px; }
+
+/* navbar brand weight */
+.navbar-brand { font-weight: 700; }
+
+/* footer subtle */
+.footer { opacity: .85; }
+
+/* ---------------------------------------
+   Anugraha Samuel - Data Visualization
+   Portfolio
+--------------------------------------- */
+
+:root {
+  --portfolio-dark: #233127;
+  --portfolio-muted: #5F6F63;
+
+  --portfolio-accent: #5E7C65;
+  --portfolio-accent-dark: #48604D;
+
+  --portfolio-background: #EEF4EE;
+  --portfolio-light: #F6FAF6;
+  --portfolio-card: #FBFDFC;
+
+  --portfolio-border: #D7E1D7;
+  --portfolio-white: #FBFDFC;
+}
+
+/* ---------- General ---------- */
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  color: var(--portfolio-dark);
+  background-color: var(--portfolio-background);
+  line-height: 1.7;
+}
+h1, h2, h3, .navbar-brand {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+main {
+  font-size: 1.05rem;
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+
+/* ---------- Navigation ---------- */
+
+.navbar {
+  background-color: rgba(251, 253, 252, 0.92);
+  border-bottom: 1px solid var(--portfolio-border);
+  backdrop-filter: blur(8px);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--portfolio-dark);
+}
+
+/* ---------- Hero section ---------- */
+
+.hero-section {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+
+  padding: 7rem 1.5rem 6rem;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #F6FAF6 0%,
+      #E7F0E7 100%
+    );
+}
+
+.hero-section > * {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-kicker {
+  margin-bottom: 1.2rem;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  color: var(--portfolio-accent);
+}
+
+.hero-section h1 {
+  margin-bottom: 0.5rem;
+
+  font-size: clamp(3.2rem, 7vw, 5.8rem);
+  font-weight: 700;
+
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+
+  color: var(--portfolio-dark);
+}
+
+.hero-section h2 {
+  margin-top: 0.8rem;
+  margin-bottom: 1.5rem;
+
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-weight: 500;
+
+  color: var(--portfolio-muted);
+}
+
+.hero-section p {
+  max-width: 720px;
+
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+
+  font-size: 1.15rem;
+
+  color: #4b5563;
+}
+
+
+/* ---------- Hero buttons ---------- */
+
+.hero-actions {
+  margin-top: 2rem;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 0.8rem;
+}
+
+.hero-actions .btn {
+  border-radius: 8px;
+
+  padding: 0.75rem 1.4rem;
+
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--portfolio-accent);
+  border-color: var(--portfolio-accent);
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background-color: var(--portfolio-accent-dark);
+  border-color: var(--portfolio-accent-dark);
+}
+.btn-outline-secondary {
+  border-color: var(--portfolio-accent);
+  color: var(--portfolio-accent);
+  background-color: transparent;
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--portfolio-accent);
+  border-color: var(--portfolio-accent);
+  color: #ffffff;
+}
+
+
+/* ---------- Homepage sections ---------- */
+
+.home-section {
+  max-width: 1100px;
+
+  margin: 5rem auto;
+
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.home-section h2 {
+  margin-bottom: 0.8rem;
+
+  font-size: 2.2rem;
+  font-weight: 700;
+
+  letter-spacing: -0.02em;
+  color: var(--portfolio-dark);
+}
+
+
+/* ---------- Project cards ---------- */
+
+.project-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 1.4rem;
+
+  margin-top: 2.2rem;
+}
+
+.project-card {
+  background: var(--portfolio-card);
+
+  border: 1px solid var(--portfolio-border);
+  border-radius: 18px;
+
+  padding: 1.8rem;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #C7D5C8;
+
+  box-shadow:
+    0 12px 28px
+    rgba(35, 49, 39, 0.08);
+}
+
+.project-card h3 {
+  margin-top: 0.7rem;
+  margin-bottom: 0.8rem;
+
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+.project-card p {
+  color: var(--portfolio-muted);
+}
+
+.project-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  color: var(--portfolio-accent);
+}
+.project-meta {
+  margin-top: 1.3rem;
+  margin-bottom: 1.2rem;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  color: var(--portfolio-muted);
+}
+
+.project-link {
+  font-weight: 650;
+  color: var(--portfolio-accent-dark);
+  text-decoration: none;
+}
+.project-link:hover {
+  text-decoration: underline;
+}
+
+
+/* ---------- Coursework links ---------- */
+
+.coursework-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  border-top: 1px solid var(--portfolio-border);
+  border-bottom: 1px solid var(--portfolio-border);
+}
+
+.assignment-links {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.7rem;
+
+  margin-top: 1.5rem;
+}
+
+.assignment-links a {
+  display: inline-block;
+
+  padding: 0.55rem 0.95rem;
+
+  border: 1px solid var(--portfolio-border);
+  border-radius: 8px;
+
+  background: var(--portfolio-white);
+
+  color: var(--portfolio-dark);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.assignment-links a:hover {
+  background: var(--portfolio-light);
+
+  border-color: #cbd5e1;
+}
+
+
+/* ---------- About preview ---------- */
+
+.about-preview {
+  max-width: 850px;
+}
+
+.about-preview p {
+  color: var(--portfolio-muted);
+}
+
+.about-link {
+  display: inline-block;
+
+  margin-top: 0.75rem;
+
+  color: var(--portfolio-accent-dark);
+
+  font-weight: 650;
+
+  text-decoration: none;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+
+  .hero-section {
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-section h1 {
+    font-size: 3rem;
+  }
+
+  .home-section {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+}
+
+/* ---------------------------------------
+   EPPS 6356 Course Page
+--------------------------------------- */
+
+.course-hero {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+
+  padding: 6rem 1.5rem 5rem;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #E7F0E7 0%,
+      #F3F7F2 100%
+    );
+}
+
+.course-hero > * {
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.course-kicker {
+  margin-bottom: 1rem;
+
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  color: var(--portfolio-accent);
+}
+
+.course-hero h1 {
+  margin-bottom: 0;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 700;
+
+  color: var(--portfolio-dark);
+}
+
+.course-hero h2 {
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 500;
+
+  color: var(--portfolio-muted);
+}
+
+.course-hero p {
+  max-width: 720px;
+
+  margin-top: 1.5rem;
+
+  color: var(--portfolio-muted);
+
+  font-size: 1.05rem;
+}
+
+
+/* Course content */
+
+.course-section {
+  max-width: 1100px;
+
+  margin: 5rem auto;
+
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.course-section h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+
+  font-size: 2.3rem;
+  font-weight: 700;
+
+  color: var(--portfolio-dark);
+}
+
+
+/* Assignment grid */
+
+.course-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 1.3rem;
+
+  margin-top: 2rem;
+}
+
+.course-card {
+  padding: 1.6rem;
+
+  background: var(--portfolio-card);
+
+  border: 1px solid var(--portfolio-border);
+  border-radius: 16px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px
+    rgba(35, 49, 39, 0.07);
+}
+
+.course-card h3 {
+  margin-top: 0;
+
+  color: var(--portfolio-dark);
+}
+
+/* Final refinements for EPPS 6356 hero */
+
+.course-hero {
+  padding: 4.8rem 1.5rem 4.2rem;
+}
+
+.course-hero h1 {
+  font-size: clamp(3.2rem, 7vw, 5.2rem);
+}
+
+.course-hero h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.course-hero p {
+  color: #56685A;
+  line-height: 1.75;
+}
+/* ---------------------------------------
+   About Page
+--------------------------------------- */
+
+.about-hero {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+
+  padding: 6rem 1.5rem 5rem;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #E7F0E7 0%,
+      #F5F8F4 100%
+    );
+}
+
+.about-hero > * {
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-kicker {
+  margin-bottom: 1rem;
+
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  color: var(--portfolio-accent);
+}
+
+.about-hero h1 {
+  margin-bottom: 0.5rem;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(3.2rem, 7vw, 5.2rem);
+  font-weight: 700;
+
+  color: var(--portfolio-dark);
+}
+
+.about-hero h2 {
+  margin-top: 0.5rem;
+
+  border-bottom: none;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 500;
+
+  color: var(--portfolio-muted);
+}
+
+.about-hero p {
+  max-width: 760px;
+
+  margin-top: 1.5rem;
+
+  color: #56685A;
+
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+
+/* Main About Sections */
+
+.about-section {
+  max-width: 1000px;
+
+  margin: 5rem auto;
+
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.about-section h2 {
+  margin-bottom: 1.2rem;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+
+  color: var(--portfolio-dark);
+}
+
+.about-section p {
+  color: var(--portfolio-muted);
+
+  font-size: 1.03rem;
+  line-height: 1.8;
+}
+
+
+/* Interest Cards */
+
+.about-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 1.4rem;
+
+  margin-top: 2rem;
+}
+
+.about-card {
+  padding: 1.8rem;
+
+  background: var(--portfolio-card);
+
+  border: 1px solid var(--portfolio-border);
+  border-radius: 16px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px
+    rgba(35, 49, 39, 0.07);
+}
+
+.about-card h3 {
+  margin-top: 0;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.65rem;
+
+  color: var(--portfolio-dark);
+}
+
+
+/* Skills */
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.7rem;
+
+  margin-top: 1.5rem;
+}
+
+.skills-list span {
+  display: inline-block;
+
+  padding: 0.55rem 0.9rem;
+
+  background: #E2ECE2;
+
+  border: 1px solid #D2DFD2;
+  border-radius: 999px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  color: var(--portfolio-accent-dark);
+}
+
+
+/* Closing sections */
+
+.about-focus {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  border-top: 1px solid var(--portfolio-border);
+  border-bottom: 1px solid var(--portfolio-border);
+}
+
+.about-closing {
+  max-width: 850px;
+
+  margin-bottom: 6rem;
+}
+
+

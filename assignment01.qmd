@@ -1,0 +1,141 @@
+---
+title: "Assignment 1"
+format: html
+editor: visual
+---
+
+## 1. Thin/thick and curve/linearity in Druckrey’s teaching
+
+Druckrey uses thin and thick lines, as well as curves and straight lines, to teach students to recognize subtle differences in visual weight and movement. Her exercises require students to repeatedly draw lines while controlling pressure, spacing, length, and alignment. A line is therefore not simply a geometric object; its thickness and rhythm can change how the eye experiences a composition. Similarly, curves introduce movement and organic qualities that cannot always be captured by rigid geometric construction. These exercises train the eye and hand to work together and help students understand visual relationships before worrying about the meaning or content of a design
+
+## 2. Holmes on the eye and hand in writing
+
+Kris Holmes describes a tension between the eye and the hand. The eye tends to be conservative, seeking order, regularity, consistency, and rhythm. The hand is more radical, naturally producing movement, variation, and individual expression. Writing therefore contains a record of physical movement: even when letters are transformed into standardized typefaces, traces of the hand remain important to how letterforms are perceived. This explains why typography requires a balance between structure and organic expression rather than being purely mechanical.
+
+## 3. Calligraphy, Steve Jobs, and the Macintosh
+
+Calligraphy was important to Steve Jobs because it introduced him to the artistic and historical qualities of letterforms, including serif and sans-serif typefaces, spacing between letters, and typography. While studying at Reed College, Jobs initially saw calligraphy as having no practical application. Years later, however, he recognized its influence while designing the Macintosh. He credited his calligraphy experience with inspiring the Mac’s multiple typefaces and proportionally spaced fonts, helping make typography an integral part of the computer’s design rather than merely functional text.
+
+## 4. Geometric versus optical accuracy
+
+The film makes an important distinction between geometric accuracy and optical accuracy. Geometric accuracy means that something is mathematically or physically equal—for example, two letters may have exactly the same measured weight or two spaces may have identical dimensions. Optical accuracy asks whether they look equal to the human eye. Druckrey demonstrates that these are not always the same. Two letters with identical measurements can appear to have different visual weights, and equal measured spaces can appear uneven. Therefore, designers sometimes have to deliberately violate mathematical precision to achieve visual balance.
+
+Overall, Teaching to See emphasizes that design is not simply about following rules or making mathematically precise forms. It is about developing the ability to see deeply, understand visual relationships, and use both disciplined observation and expressive movement. Druckrey’s teaching shows that the most successful designs emerge when measurement, perception, and the human hand work together.
+
+## Anugraha’s Data Guide
+
+## 1. Source and Provenance
+
+Before working with the data, I need to understand how it came into existence.
+
+-   Who created or collected the data? Is the original source identifiable?
+
+-   How were the data collected? Was the information obtained through surveys, administrative records, sensors, observations, manual entry, or another method?
+
+-   Am I working with the original data or a modified version? If another person or organisation processed the data, do I know what was changed?
+
+-   Is the methodology documented clearly enough for me to understand the dataset's limitations?
+
+-   Could the source have incentives, procedures, or collection constraints that systematically influence what appears in the data?
+
+    ## 2. Completeness and Missing Data
+
+Missing information can change the meaning of an analysis, so I should understand absence before treating it as insignificant.
+
+-   Are values missing? If so, do I know what the missing values mean?
+
+-   Are zeros, blanks, negative values, or unusual codes being used as substitutes for missing information?
+
+-   Are records missing that I would reasonably expect to be present, such as particular years, geographic areas, groups, or categories?
+
+-   Is the dataset complete for the time period, population, and geographic area I intend to discuss?
+
+-   Could missing observations systematically affect the pattern or conclusion I see?
+
+    ## 3. Structure, Definitions, and Consistency
+
+Before calculating anything, I should determine whether the dataset is internally consistent.
+
+-   Are any rows, observations, or identifiers duplicated?
+
+-   Are categories, names, locations, and labels spelled and coded consistently?
+
+-   Are dates stored and interpreted consistently?
+
+-   Are units clearly defined? For example, do I know whether a value represents dollars, percentages, people, rates, kilograms, miles, or another unit?
+
+-   Are variable and column names clear enough that I understand what each field actually measures?
+
+-   Are identifiers such as ZIP codes, FIPS codes, IDs, or account numbers being treated as identifiers rather than meaningful numerical quantities?
+
+    ## 4. Plausibility and Data Quality
+
+I should perform basic reality checks rather than assuming unusual values are valid.
+
+-   What are the minimum, maximum, average, and general distribution of important variables?
+
+-   Are any values impossible, implausible, or unexpectedly extreme?
+
+-   Are there unexplained outliers that could represent errors, unusual cases, or important phenomena?
+
+-   Do I see suspicious placeholder values, such as repeated 9s, repeated zeros, unusual default dates, or other codes that may not represent real observations?
+
+-   Does the level of numerical precision make sense for the way the variable was actually measured?
+
+-   If published totals or summaries are available, do my calculations agree with them?
+
+    ## 5. Sampling, Measurement, and Representation
+
+A clean dataset can still produce misleading conclusions if it does not adequately represent the population or concept being studied.
+
+-   What population does this dataset actually represent?
+
+-   How were cases or participants selected? Was the sample random, convenience-based, voluntary, or produced through another process?
+
+-   Could certain groups be systematically underrepresented or overrepresented?
+
+-   If the data come from a sample or survey, is uncertainty such as a margin of error available and reasonable?
+
+-   Do the variables actually measure the concepts I want to discuss, or am I using a convenient proxy?
+
+-   Does the evidence support the conclusion I want to make, or would my interpretation go beyond what the data can establish?
+
+    ## 6. Time, Geography, and Aggregation
+
+Patterns can change depending on when, where, and at what level data are grouped.
+
+-   Are the time periods I am comparing genuinely comparable?
+
+-   Could seasonal patterns or other natural variation explain an apparent increase or decrease?
+
+-   If financial values are compared across time, do I need to account for inflation or changing monetary value?
+
+-   Is the geographic level appropriate for my question, or are the data too broad or too detailed?
+
+-   Could aggregation hide meaningful differences among neighborhoods, demographic groups, organizations, or other subgroups?
+
+-   Am I comparing categories, locations, or time periods that were defined or measured in the same way?
+
+    ## 7. Before Visualization and Communication
+
+A technically correct calculation can still produce a misleading visualization. Before publishing or presenting my work, I will check whether the visual representation accurately reflects the strength and limitations of the evidence.
+
+-   Have I preserved the original data and documented important cleaning or transformation decisions?
+
+-   Could missing data materially change the pattern shown in the visualization?
+
+-   Does my visualization imply greater certainty or precision than the data support?
+
+-   Could my choice of scale, categories, aggregation, or time frame exaggerate or conceal an important pattern?
+
+-   Have I represented uncertainty where it is important to interpretation?
+
+-   Can I clearly explain where the data came from, what each major variable represents, and how I transformed the data?
+
+-   Would another person have enough information to reproduce the important steps of my analysis?
+
+-   Have I disclosed limitations that could materially affect how the audience should interpret the visualization?
+
+## Source
+
+Adapted from the Quartz Guide to Bad Data, with additional questions focused on responsible data analysis and visualization for EPPS 6356.

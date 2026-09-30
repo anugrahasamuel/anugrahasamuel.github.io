@@ -1,0 +1,126 @@
+---
+title: "EPPS 6302 Methods of Data Collection"
+page-layout: full
+toc: false
+---
+
+::: {.course-hero}
+
+<div class="course-kicker">THE UNIVERSITY OF TEXAS AT DALLAS</div>
+
+# EPPS 6302
+
+## Methods of Data Collection
+
+**Fall 2026**
+
+This page documents my coursework, research exercises, and projects for EPPS 6302: Methods of Data Collection.
+
+The course focuses on how social-science data are generated, collected, evaluated, and prepared for analysis, with attention to research design, measurement, sampling, reliability, validity, and ethical data collection.
+
+:::
+
+
+::: {.course-section}
+
+## Coursework
+
+Throughout the semester, coursework will examine different approaches to collecting and evaluating data for social research.
+
+The completed assignments will be added here as the course progresses.
+
+::: {.course-grid}
+
+::: {.course-card}
+
+<div class="assignment-number">01</div>
+
+### Assignment 1
+
+Methods of Data Collection coursework.
+
+[View Assignment →](assignment1.qmd){.project-link}
+
+:::
+
+
+::: {.course-card}
+
+<div class="assignment-number">02</div>
+
+### Assignment 2
+
+Methods of Data Collection coursework.
+
+[View Assignment →](assignment2.qmd){.project-link}
+
+:::
+
+
+::: {.course-card}
+
+<div class="assignment-number">03</div>
+
+### Assignment 3
+
+Methods of Data Collection coursework.
+
+[View Assignment →](assignment3.qmd){.project-link}
+
+:::
+
+
+::: {.course-card}
+
+<div class="assignment-number">04</div>
+
+### Assignment 4
+
+Methods of Data Collection coursework.
+
+[View Assignment →](assignment4.qmd){.project-link}
+
+:::
+
+
+::: {.course-card}
+
+<div class="assignment-number">05</div>
+
+### Assignment 5
+
+Methods of Data Collection coursework.
+
+[View Assignment →](assignment5.qmd){.project-link}
+
+:::
+
+
+::: {.course-card}
+
+<div class="assignment-number">06</div>
+
+### Assignment 6
+
+Methods of Data Collection coursework.
+
+[View Assignment →](assignment6.qmd){.project-link}
+
+:::
+
+:::
+
+
+::: {.course-section}
+
+## About the Course
+
+EPPS 6302 focuses on the foundations of empirical research and the decisions involved in producing credible data.
+
+The course considers how research questions are translated into measurable concepts, how samples are selected, how data are gathered, and how the strengths and limitations of different collection methods affect the conclusions that can reasonably be drawn.
+
+Topics may include survey design, interviews, sampling, measurement, reliability, validity, observational methods, and ethical considerations in social research.
+
+As assignments are completed, this page will serve as an organized record of my work throughout the semester.
+
+:::

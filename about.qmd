@@ -1,20 +1,129 @@
 ---
 title: "About"
+page-layout: full
+toc: false
 ---
 
-# About
+::: {.about-hero}
 
-I am an MS Social Data Analytics and Research student at The University of Texas at Dallas.  
-I’m interested in how data, storytelling, and quantitative methods can help us better understand social issues.
+<div class="about-kicker">ABOUT ME</div>
 
-This site is a place to share:
+# Hi, I'm Anugraha.
 
-- Course projects and assignments  
-- Examples of my R and Quarto work  
-- Reflections on research and data collection  
+## Social Data Analytics · Research · Data Visualization
 
-## My Resume
+I am a graduate student in **Social Data Analytics at The University of Texas at Dallas**, with an academic background in **Psychology and Sociology**.
 
-You can view or download my current CV here:
+My interests sit at the intersection of people, data, and society. I am particularly interested in using quantitative and computational methods to better understand human behavior, social patterns, and the ways in which data can be communicated clearly and responsibly.
 
-[📄 Download my resume](files/Anugraha_Samuel_CV.pdf)
+:::
+
+
+::: {.about-section}
+
+## My Background
+
+My academic training in psychology and sociology shaped the way I approach data.
+
+Rather than viewing data simply as numbers, I am interested in the people, behaviors, institutions, and social processes represented behind those numbers.
+
+My current graduate studies in Social Data Analytics allow me to combine this social-science perspective with computational methods, statistical analysis, and data visualization.
+
+Through my coursework, I have been developing experience working with different forms of social data and learning how analytical and visual methods can be used to identify patterns, communicate evidence, and support thoughtful interpretation.
+
+:::
+
+
+::: {.about-section}
+
+## What I'm Interested In
+
+::: {.about-grid}
+
+::: {.about-card}
+
+### Social Data
+
+I am interested in using data to understand social behavior, demographic patterns, inequality, public opinion, and other questions related to society and human behavior.
+
+:::
+
+
+::: {.about-card}
+
+### Data Visualization
+
+I am interested in how design choices influence what people notice, understand, and conclude from data.
+
+For me, visualization is not simply about producing attractive charts. It is a way of organizing evidence and making complex information easier to interpret.
+
+:::
+
+
+::: {.about-card}
+
+### Human-Centered Research
+
+My background in psychology and sociology has made me particularly interested in research that focuses on people's experiences, behaviors, and decision-making.
+
+This includes areas such as user research, survey research, and mixed-method approaches.
+
+:::
+
+:::
+
+:::
+
+
+::: {.about-section}
+
+## Methods & Tools
+
+My coursework and projects involve a growing set of analytical and visualization methods.
+
+<div class="skills-list">
+
+<span>R</span>
+<span>ggplot2</span>
+<span>Data Visualization</span>
+<span>Statistical Analysis</span>
+<span>Social Data Analysis</span>
+<span>Survey Research</span>
+<span>Spatial Data</span>
+<span>Text Analysis</span>
+<span>Data Cleaning</span>
+<span>Research Design</span>
+
+</div>
+
+:::
+
+
+::: {.about-section .about-focus}
+
+## Current Focus
+
+I am currently focused on strengthening my ability to move from a research question to a clear and defensible analysis.
+
+That means thinking carefully about:
+
+- what question the data can actually answer,
+- how data should be collected and prepared,
+- which visual representation best fits the evidence,
+- how design affects interpretation,
+- and what limitations should be acknowledged when drawing conclusions.
+
+This portfolio documents that learning process through coursework and independent exploration.
+
+:::
+
+
+::: {.about-section .about-closing}
+
+## Beyond the Classroom
+
+I am continuing to explore how social-science research, data analytics, visualization, and human-centered research can come together in professional practice.
+
+I am especially interested in projects that require both analytical reasoning and an understanding of people — where quantitative evidence can be combined with thoughtful interpretation to help answer meaningful questions.
+
+:::
