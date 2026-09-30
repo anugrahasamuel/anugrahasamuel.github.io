@@ -2,6 +2,8 @@
 title: "Assignment 4 – Webscraping 1"
 format: html
 editor: visual
+execute:
+  enabled: false
 ---
 
 ## 1. Scraping Wikipedia Foreign Reserve Data
@@ -103,24 +105,31 @@ head(example_table)
 ## 4. Data Plan for Acquiring Web Data for Research
 
 ### 4.1 Define the research question
+
 Identify variables, scope, and intended analysis.
 
-### 4.2 Identify data sources  
+### 4.2 Identify data sources
+
 Prefer official sources (IMF, World Bank, OECD).
 
-### 4.3 Choose collection method  
+### 4.3 Choose collection method
+
 rvest for tables, httr/jsonlite for APIs.
 
-### 4.4 Cleaning workflow  
+### 4.4 Cleaning workflow
+
 Standardize names, convert numeric/date fields, remove footnotes.
 
-### 4.5 Storage & documentation  
+### 4.5 Storage & documentation
+
 Use data/raw and data/clean, maintain a data dictionary.
 
-### 4.6 Update strategy  
+### 4.6 Update strategy
+
 Re-scrape periodically and check layout changes.
 
-### 4.7 Ethics  
+### 4.7 Ethics
+
 Respect robots.txt and cite data sources properly.
 
 ## 5. Summary
