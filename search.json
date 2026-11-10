@@ -1,17 +1,66 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "epps6302.html",
+    "href": "epps6302.html",
+    "title": "EPPS 6302 Methods of Data Collection",
     "section": "",
-    "text": "I am an MS Social Data Analytics and Research student at The University of Texas at Dallas.\nI’m interested in how data, storytelling, and quantitative methods can help us better understand social issues.\nThis site is a place to share:\n\nCourse projects and assignments\n\nExamples of my R and Quarto work\n\nReflections on research and data collection\n\n\n\nYou can view or download my current CV here:\n📄 Download my resume"
+    "text": "THE UNIVERSITY OF TEXAS AT DALLAS\n\n\n\n\n\nFall 2026\nThis page documents my coursework, research exercises, and projects for EPPS 6302: Methods of Data Collection.\nThe course focuses on how social-science data are generated, collected, evaluated, and prepared for analysis, with attention to research design, measurement, sampling, reliability, validity, and ethical data collection."
   },
   {
-    "objectID": "about.html#my-resume",
-    "href": "about.html#my-resume",
-    "title": "About",
+    "objectID": "epps6302.html#methods-of-data-collection",
+    "href": "epps6302.html#methods-of-data-collection",
+    "title": "EPPS 6302 Methods of Data Collection",
     "section": "",
-    "text": "You can view or download my current CV here:\n📄 Download my resume"
+    "text": "Fall 2026\nThis page documents my coursework, research exercises, and projects for EPPS 6302: Methods of Data Collection.\nThe course focuses on how social-science data are generated, collected, evaluated, and prepared for analysis, with attention to research design, measurement, sampling, reliability, validity, and ethical data collection."
+  },
+  {
+    "objectID": "epps6302.html#coursework",
+    "href": "epps6302.html#coursework",
+    "title": "EPPS 6302 Methods of Data Collection",
+    "section": "Coursework",
+    "text": "Coursework\nThroughout the semester, coursework will examine different approaches to collecting and evaluating data for social research.\nThe completed assignments will be added here as the course progresses.\n\n\n\n01\n\n\nAssignment 1\nMethods of Data Collection coursework.\nView Assignment →\n\n\n\n\n02\n\n\nAssignment 2\nMethods of Data Collection coursework.\nView Assignment →\n\n\n\n\n03\n\n\nAssignment 3\nMethods of Data Collection coursework.\nView Assignment →\n\n\n\n\n04\n\n\nAssignment 4\nMethods of Data Collection coursework.\nView Assignment →\n\n\n\n\n05\n\n\nAssignment 5\nMethods of Data Collection coursework.\nView Assignment →\n\n\n\n\n06\n\n\nAssignment 6\nMethods of Data Collection coursework.\nView Assignment →"
+  },
+  {
+    "objectID": "epps6302.html#about-the-course",
+    "href": "epps6302.html#about-the-course",
+    "title": "EPPS 6302 Methods of Data Collection",
+    "section": "About the Course",
+    "text": "About the Course\nEPPS 6302 focuses on the foundations of empirical research and the decisions involved in producing credible data.\nThe course considers how research questions are translated into measurable concepts, how samples are selected, how data are gathered, and how the strengths and limitations of different collection methods affect the conclusions that can reasonably be drawn.\nTopics may include survey design, interviews, sampling, measurement, reliability, validity, observational methods, and ethical considerations in social research.\nAs assignments are completed, this page will serve as an organized record of my work throughout the semester."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Anugraha Samuel",
+    "section": "",
+    "text": "DATA VISUALIZATION PORTFOLIO\n\n\n\n\n\nI use data, visual evidence, and computational methods to explore social questions, identify patterns, and communicate findings clearly.\n\nExplore Projects\nAbout Me"
+  },
+  {
+    "objectID": "index.html#social-data-analytics-data-visualization-social-research",
+    "href": "index.html#social-data-analytics-data-visualization-social-research",
+    "title": "Anugraha Samuel",
+    "section": "",
+    "text": "I use data, visual evidence, and computational methods to explore social questions, identify patterns, and communicate findings clearly.\n\nExplore Projects\nAbout Me"
+  },
+  {
+    "objectID": "index.html#featured-projects",
+    "href": "index.html#featured-projects",
+    "title": "Anugraha Samuel",
+    "section": "Featured Projects",
+    "text": "Featured Projects\nA selection of visualization and data-analysis projects completed as part of my graduate coursework in Data Visualization.\n\n\n\nDATA & TRENDS\n\n\nGoogle Trends and Search Interest\nExploring changes in public search attention over time using Google Trends data and reproducible R workflows.\n\nR · gtrendsR · ggplot2 · Time Series\n\nView Project →\n\n\n\n\nSPATIAL DATA\n\n\nMapping Income and Poverty in Texas\nUsing American Community Survey data to explore geographic patterns through maps and statistical visualization.\n\nR · tidycensus · sf · ggplot2\n\nView Project →\n\n\n\n\nTEXT AS DATA\n\n\nExploring Text Through Quantitative Analysis\nApplying computational text-analysis methods to identify patterns, relationships, and structure in textual data.\n\nR · quanteda · Text Analysis · Networks\n\nView Project →"
+  },
+  {
+    "objectID": "index.html#coursework",
+    "href": "index.html#coursework",
+    "title": "Anugraha Samuel",
+    "section": "Coursework",
+    "text": "Coursework\nThis website documents my work for EPPS 6356: Data Visualization. Each assignment applies visualization and computational techniques to different types of social data.\n\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5\nAssignment 6"
+  },
+  {
+    "objectID": "index.html#about-this-portfolio",
+    "href": "index.html#about-this-portfolio",
+    "title": "Anugraha Samuel",
+    "section": "About This Portfolio",
+    "text": "About This Portfolio\nThe goal of this portfolio is not only to present finished visualizations, but also to document the decisions behind them: how data are collected, transformed, represented, interpreted, and evaluated.\nThe projects emphasize clear visual communication, reproducible analysis, responsible use of data, and critical interpretation of evidence.\nLearn more about me →"
   },
   {
     "objectID": "epps6302_assignment2.html",
@@ -89,6 +138,34 @@
     "title": "Assignment 2 – Google Trends",
     "section": "5. Conclusion",
     "text": "5. Conclusion\nThis assignment showed two complementary ways to collect data from Google Trends. The website interface makes it simple to explore search interest visually and download a ready-made CSV file. The gtrendsR package requires more setup but gives much more control over the query and produces a tidy, reproducible dataset that fits naturally into an R workflow. For a small class exercise either approach works, but for a real research project I would rely on gtrendsR so that my data collection steps are documented in code and can be updated or repeated whenever Google Trends data change."
+  },
+  {
+    "objectID": "epps6356.html",
+    "href": "epps6356.html",
+    "title": "EPPS 6356 Data Visualisation",
+    "section": "",
+    "text": "THE UNIVERSITY OF TEXAS AT DALLAS\n\n\n\n\n\nFall 2026\nThis page documents my coursework, visual analyses, and projects for EPPS 6356: Data Visualisation.\nThe course focuses on using data visualization as a tool for analysis and communication, with attention to evidence, perception, design choices, reproducibility, and critical interpretation."
+  },
+  {
+    "objectID": "epps6356.html#data-visualisation",
+    "href": "epps6356.html#data-visualisation",
+    "title": "EPPS 6356 Data Visualisation",
+    "section": "",
+    "text": "Fall 2026\nThis page documents my coursework, visual analyses, and projects for EPPS 6356: Data Visualisation.\nThe course focuses on using data visualization as a tool for analysis and communication, with attention to evidence, perception, design choices, reproducibility, and critical interpretation."
+  },
+  {
+    "objectID": "epps6356.html#coursework",
+    "href": "epps6356.html#coursework",
+    "title": "EPPS 6356 Data Visualisation",
+    "section": "Coursework",
+    "text": "Coursework\nThroughout the semester, assignments will explore different approaches to collecting, transforming, visualizing, and interpreting data.\nThe completed assignments will be added here as the course progresses.\n\n\nAssignment 1\nCourse assignment and visualization project.\nView Assignment 1\n\n\nAssignment 2\nCourse assignment and visualization project.\nComing soon\n\n\nAssignment 3\nCourse assignment and visualization project.\nComing soon\n\n\nAssignment 4\nCourse assignment and visualization project.\nComing soon\n\n\nAssignment 5\nCourse assignment and visualization project.\nComing soon\n\n\nAssignment 6\nCourse assignment and visualization project.\nComing soon"
+  },
+  {
+    "objectID": "epps6356.html#about-the-course",
+    "href": "epps6356.html#about-the-course",
+    "title": "EPPS 6356 Data Visualisation",
+    "section": "About the Course",
+    "text": "About the Course\nEPPS 6356 approaches data visualization as more than the production of charts. The coursework considers how visual representations shape interpretation and how visualization choices should be supported by appropriate data, analytical reasoning, and evidence.\nAs assignments are completed, this page will serve as an organized record of my work throughout the semester."
   },
   {
     "objectID": "assignment3.html",
@@ -224,10 +301,108 @@
     "text": "5. Summary\nThis assignment involved scraping with rvest, cleaning variables, extracting multiple tables, and designing a research data acquisition plan."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "anugrahasamuel.github.io",
+    "objectID": "assignment01.html",
+    "href": "assignment01.html",
+    "title": "Assignment 1",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1 + 1\n\n[1] 3"
+    "text": "Druckrey uses thin and thick lines, as well as curves and straight lines, to teach students to recognize subtle differences in visual weight and movement. Her exercises require students to repeatedly draw lines while controlling pressure, spacing, length, and alignment. A line is therefore not simply a geometric object; its thickness and rhythm can change how the eye experiences a composition. Similarly, curves introduce movement and organic qualities that cannot always be captured by rigid geometric construction. These exercises train the eye and hand to work together and help students understand visual relationships before worrying about the meaning or content of a design"
+  },
+  {
+    "objectID": "assignment01.html#thinthick-and-curvelinearity-in-druckreys-teaching",
+    "href": "assignment01.html#thinthick-and-curvelinearity-in-druckreys-teaching",
+    "title": "Assignment 1",
+    "section": "",
+    "text": "Druckrey uses thin and thick lines, as well as curves and straight lines, to teach students to recognize subtle differences in visual weight and movement. Her exercises require students to repeatedly draw lines while controlling pressure, spacing, length, and alignment. A line is therefore not simply a geometric object; its thickness and rhythm can change how the eye experiences a composition. Similarly, curves introduce movement and organic qualities that cannot always be captured by rigid geometric construction. These exercises train the eye and hand to work together and help students understand visual relationships before worrying about the meaning or content of a design"
+  },
+  {
+    "objectID": "assignment01.html#holmes-on-the-eye-and-hand-in-writing",
+    "href": "assignment01.html#holmes-on-the-eye-and-hand-in-writing",
+    "title": "Assignment 1",
+    "section": "2. Holmes on the eye and hand in writing",
+    "text": "2. Holmes on the eye and hand in writing\nKris Holmes describes a tension between the eye and the hand. The eye tends to be conservative, seeking order, regularity, consistency, and rhythm. The hand is more radical, naturally producing movement, variation, and individual expression. Writing therefore contains a record of physical movement: even when letters are transformed into standardized typefaces, traces of the hand remain important to how letterforms are perceived. This explains why typography requires a balance between structure and organic expression rather than being purely mechanical."
+  },
+  {
+    "objectID": "assignment01.html#calligraphy-steve-jobs-and-the-macintosh",
+    "href": "assignment01.html#calligraphy-steve-jobs-and-the-macintosh",
+    "title": "Assignment 1",
+    "section": "3. Calligraphy, Steve Jobs, and the Macintosh",
+    "text": "3. Calligraphy, Steve Jobs, and the Macintosh\nCalligraphy was important to Steve Jobs because it introduced him to the artistic and historical qualities of letterforms, including serif and sans-serif typefaces, spacing between letters, and typography. While studying at Reed College, Jobs initially saw calligraphy as having no practical application. Years later, however, he recognized its influence while designing the Macintosh. He credited his calligraphy experience with inspiring the Mac’s multiple typefaces and proportionally spaced fonts, helping make typography an integral part of the computer’s design rather than merely functional text."
+  },
+  {
+    "objectID": "assignment01.html#geometric-versus-optical-accuracy",
+    "href": "assignment01.html#geometric-versus-optical-accuracy",
+    "title": "Assignment 1",
+    "section": "4. Geometric versus optical accuracy",
+    "text": "4. Geometric versus optical accuracy\nThe film makes an important distinction between geometric accuracy and optical accuracy. Geometric accuracy means that something is mathematically or physically equal—for example, two letters may have exactly the same measured weight or two spaces may have identical dimensions. Optical accuracy asks whether they look equal to the human eye. Druckrey demonstrates that these are not always the same. Two letters with identical measurements can appear to have different visual weights, and equal measured spaces can appear uneven. Therefore, designers sometimes have to deliberately violate mathematical precision to achieve visual balance.\nOverall, Teaching to See emphasizes that design is not simply about following rules or making mathematically precise forms. It is about developing the ability to see deeply, understand visual relationships, and use both disciplined observation and expressive movement. Druckrey’s teaching shows that the most successful designs emerge when measurement, perception, and the human hand work together."
+  },
+  {
+    "objectID": "assignment01.html#anugrahas-data-guide",
+    "href": "assignment01.html#anugrahas-data-guide",
+    "title": "Assignment 1",
+    "section": "Anugraha’s Data Guide",
+    "text": "Anugraha’s Data Guide"
+  },
+  {
+    "objectID": "assignment01.html#source-and-provenance",
+    "href": "assignment01.html#source-and-provenance",
+    "title": "Assignment 1",
+    "section": "1. Source and Provenance",
+    "text": "1. Source and Provenance\nBefore working with the data, I need to understand how it came into existence.\n\nWho created or collected the data? Is the original source identifiable?\nHow were the data collected? Was the information obtained through surveys, administrative records, sensors, observations, manual entry, or another method?\nAm I working with the original data or a modified version? If another person or organisation processed the data, do I know what was changed?\nIs the methodology documented clearly enough for me to understand the dataset’s limitations?\nCould the source have incentives, procedures, or collection constraints that systematically influence what appears in the data?\n2. Completeness and Missing Data\n\nMissing information can change the meaning of an analysis, so I should understand absence before treating it as insignificant.\n\nAre values missing? If so, do I know what the missing values mean?\nAre zeros, blanks, negative values, or unusual codes being used as substitutes for missing information?\nAre records missing that I would reasonably expect to be present, such as particular years, geographic areas, groups, or categories?\nIs the dataset complete for the time period, population, and geographic area I intend to discuss?\nCould missing observations systematically affect the pattern or conclusion I see?\n3. Structure, Definitions, and Consistency\n\nBefore calculating anything, I should determine whether the dataset is internally consistent.\n\nAre any rows, observations, or identifiers duplicated?\nAre categories, names, locations, and labels spelled and coded consistently?\nAre dates stored and interpreted consistently?\nAre units clearly defined? For example, do I know whether a value represents dollars, percentages, people, rates, kilograms, miles, or another unit?\nAre variable and column names clear enough that I understand what each field actually measures?\nAre identifiers such as ZIP codes, FIPS codes, IDs, or account numbers being treated as identifiers rather than meaningful numerical quantities?\n4. Plausibility and Data Quality\n\nI should perform basic reality checks rather than assuming unusual values are valid.\n\nWhat are the minimum, maximum, average, and general distribution of important variables?\nAre any values impossible, implausible, or unexpectedly extreme?\nAre there unexplained outliers that could represent errors, unusual cases, or important phenomena?\nDo I see suspicious placeholder values, such as repeated 9s, repeated zeros, unusual default dates, or other codes that may not represent real observations?\nDoes the level of numerical precision make sense for the way the variable was actually measured?\nIf published totals or summaries are available, do my calculations agree with them?\n5. Sampling, Measurement, and Representation\n\nA clean dataset can still produce misleading conclusions if it does not adequately represent the population or concept being studied.\n\nWhat population does this dataset actually represent?\nHow were cases or participants selected? Was the sample random, convenience-based, voluntary, or produced through another process?\nCould certain groups be systematically underrepresented or overrepresented?\nIf the data come from a sample or survey, is uncertainty such as a margin of error available and reasonable?\nDo the variables actually measure the concepts I want to discuss, or am I using a convenient proxy?\nDoes the evidence support the conclusion I want to make, or would my interpretation go beyond what the data can establish?\n6. Time, Geography, and Aggregation\n\nPatterns can change depending on when, where, and at what level data are grouped.\n\nAre the time periods I am comparing genuinely comparable?\nCould seasonal patterns or other natural variation explain an apparent increase or decrease?\nIf financial values are compared across time, do I need to account for inflation or changing monetary value?\nIs the geographic level appropriate for my question, or are the data too broad or too detailed?\nCould aggregation hide meaningful differences among neighborhoods, demographic groups, organizations, or other subgroups?\nAm I comparing categories, locations, or time periods that were defined or measured in the same way?\n7. Before Visualization and Communication\n\nA technically correct calculation can still produce a misleading visualization. Before publishing or presenting my work, I will check whether the visual representation accurately reflects the strength and limitations of the evidence.\n\nHave I preserved the original data and documented important cleaning or transformation decisions?\nCould missing data materially change the pattern shown in the visualization?\nDoes my visualization imply greater certainty or precision than the data support?\nCould my choice of scale, categories, aggregation, or time frame exaggerate or conceal an important pattern?\nHave I represented uncertainty where it is important to interpretation?\nCan I clearly explain where the data came from, what each major variable represents, and how I transformed the data?\nWould another person have enough information to reproduce the important steps of my analysis?\nHave I disclosed limitations that could materially affect how the audience should interpret the visualization?"
+  },
+  {
+    "objectID": "assignment01.html#source",
+    "href": "assignment01.html#source",
+    "title": "Assignment 1",
+    "section": "Source",
+    "text": "Source\nAdapted from the Quartz Guide to Bad Data, with additional questions focused on responsible data analysis and visualization for EPPS 6356."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "ABOUT ME\n\n\n\n\n\nI am a graduate student in Social Data Analytics at The University of Texas at Dallas, with an academic background in Psychology and Sociology.\nMy interests sit at the intersection of people, data, and society. I am particularly interested in using quantitative and computational methods to better understand human behavior, social patterns, and the ways in which data can be communicated clearly and responsibly."
+  },
+  {
+    "objectID": "about.html#social-data-analytics-research-data-visualization",
+    "href": "about.html#social-data-analytics-research-data-visualization",
+    "title": "About",
+    "section": "",
+    "text": "I am a graduate student in Social Data Analytics at The University of Texas at Dallas, with an academic background in Psychology and Sociology.\nMy interests sit at the intersection of people, data, and society. I am particularly interested in using quantitative and computational methods to better understand human behavior, social patterns, and the ways in which data can be communicated clearly and responsibly."
+  },
+  {
+    "objectID": "about.html#my-background",
+    "href": "about.html#my-background",
+    "title": "About",
+    "section": "My Background",
+    "text": "My Background\nMy academic training in psychology and sociology shaped the way I approach data.\nRather than viewing data simply as numbers, I am interested in the people, behaviors, institutions, and social processes represented behind those numbers.\nMy current graduate studies in Social Data Analytics allow me to combine this social-science perspective with computational methods, statistical analysis, and data visualization.\nThrough my coursework, I have been developing experience working with different forms of social data and learning how analytical and visual methods can be used to identify patterns, communicate evidence, and support thoughtful interpretation."
+  },
+  {
+    "objectID": "about.html#what-im-interested-in",
+    "href": "about.html#what-im-interested-in",
+    "title": "About",
+    "section": "What I’m Interested In",
+    "text": "What I’m Interested In\n\n\nSocial Data\nI am interested in using data to understand social behavior, demographic patterns, inequality, public opinion, and other questions related to society and human behavior.\n\n\nData Visualization\nI am interested in how design choices influence what people notice, understand, and conclude from data.\nFor me, visualization is not simply about producing attractive charts. It is a way of organizing evidence and making complex information easier to interpret.\n\n\nHuman-Centered Research\nMy background in psychology and sociology has made me particularly interested in research that focuses on people’s experiences, behaviors, and decision-making.\nThis includes areas such as user research, survey research, and mixed-method approaches."
+  },
+  {
+    "objectID": "about.html#methods-tools",
+    "href": "about.html#methods-tools",
+    "title": "About",
+    "section": "Methods & Tools",
+    "text": "Methods & Tools\nMy coursework and projects involve a growing set of analytical and visualization methods.\n\nR ggplot2 Data Visualization Statistical Analysis Social Data Analysis Survey Research Spatial Data Text Analysis Data Cleaning Research Design"
+  },
+  {
+    "objectID": "about.html#current-focus",
+    "href": "about.html#current-focus",
+    "title": "About",
+    "section": "Current Focus",
+    "text": "Current Focus\nI am currently focused on strengthening my ability to move from a research question to a clear and defensible analysis.\nThat means thinking carefully about:\n\nwhat question the data can actually answer,\nhow data should be collected and prepared,\nwhich visual representation best fits the evidence,\nhow design affects interpretation,\nand what limitations should be acknowledged when drawing conclusions.\n\nThis portfolio documents that learning process through coursework and independent exploration."
+  },
+  {
+    "objectID": "about.html#beyond-the-classroom",
+    "href": "about.html#beyond-the-classroom",
+    "title": "About",
+    "section": "Beyond the Classroom",
+    "text": "Beyond the Classroom\nI am continuing to explore how social-science research, data analytics, visualization, and human-centered research can come together in professional practice.\nI am especially interested in projects that require both analytical reasoning and an understanding of people — where quantitative evidence can be combined with thoughtful interpretation to help answer meaningful questions."
   }
 ]
